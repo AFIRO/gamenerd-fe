@@ -31,7 +31,7 @@ const GameCreateComponentForm: React.FC = () => {
   };
 
   return (
-    <div className="register-form">
+    <div className="register-form container-fluid">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label>Game name</label>
