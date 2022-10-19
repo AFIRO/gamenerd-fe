@@ -1,21 +1,15 @@
 import React from 'react';
 import './App.css';
-import { GameComponent } from './components/game/game';
-import GAME_DATA from './api/mock-data';
-import TODO_DATA from './api/mock-doto';
-import {ToDoItem} from './components/ToDoItem';
 import GameCreateComponentForm from './components/game/game.create.form';
+import GameListComponent from './components/game/game.list';
 
 function App() {
   
   return (
     <div className="App">
 
+      <GameListComponent></GameListComponent>
       <GameCreateComponentForm></GameCreateComponentForm>
-
-      {GAME_DATA.map(game => <GameComponent  gameName={game.gameName} boxart={game.boxart}></GameComponent>)}
-
-      {TODO_DATA.map(todo => <ToDoItem {...todo}></ToDoItem>)}
       
     </div>
   );
