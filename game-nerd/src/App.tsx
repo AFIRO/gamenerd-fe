@@ -19,7 +19,7 @@ function App() {
       <Routes>
       
       
-      <Route path="/" element={<GameListComponent />}/>
+      <Route index element={<GameListComponent />}/>
       <Route path="games" element={<GameListComponent />}/>
       <Route path="news" element={<NewsListComponent />}/>
       <Route path="/games/news/:id" element={<GameNewsComponent />} />
