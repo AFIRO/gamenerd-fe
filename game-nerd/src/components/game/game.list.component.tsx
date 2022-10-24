@@ -1,6 +1,6 @@
 import  { useState } from "react"
 import GAME_DATA from "../../api/mock-games"
-import GameComponent from "./game.component"
+import GameListItemComponent from "./game.list.item.component"
 
 
 export default function GameListComponent() {
@@ -18,7 +18,7 @@ export default function GameListComponent() {
               <td>News</td>
               <td>Review</td>
             </thead>
-            {games.map(game => <GameComponent {...game} ></GameComponent>)}
+            {games.map(game => <GameListItemComponent {...game} ></GameListItemComponent>)}
           </table>
         </div>
       </div>

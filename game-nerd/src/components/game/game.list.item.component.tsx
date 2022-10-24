@@ -6,7 +6,7 @@ interface Props {
   boxart: string
 }
 
-export default function GameComponent(props:Props) {
+export default function GameListItemComponent(props:Props) {
 
       return (
         <tr>
