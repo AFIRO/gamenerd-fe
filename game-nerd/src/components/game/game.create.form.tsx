@@ -2,9 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import GAME_DATA from '../../api/mock-data';
+import GAME_DATA from '../../api/mock-games';
 
 type gameSubmitForm = {
+  id: string,
   gameName: string;
   boxart: string;
 };

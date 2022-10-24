@@ -1,12 +1,7 @@
-import React from "react"
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 
 interface Props {
+  id: string
   gameName: string,
   boxart: string
 }
@@ -14,21 +9,12 @@ interface Props {
 export default function GameComponent(props:Props) {
 
       return (
-        <Card sx={{ minWidth: 150 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image= {props.boxart}
-          alt="boxart"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-          {props.gameName}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">News</Button>
-          <Button size="small">Review</Button>
-        </CardActions>
-      </Card>)
+        <tr>
+          <td>{props.gameName}</td>
+          <td><img src={props.boxart} alt="" className="small-image"/></td>
+          <td><Link to={`/games/news/${props.id}`}><button type="button" className="btn btn-secondary">News</button></Link></td>
+          <td><Link to={`/reviews/${props.id}`}><button type="button" className="btn btn-secondary">Reviews</button></Link></td>
+        </tr>
+      )
+      
 }
