@@ -1,9 +1,10 @@
-import axios from 'axios';
+import { axios } from '..';
 import { NewsCreateDto } from './model/news.create.dto';
 import { NewsUpdateDto } from './model/news.update.dto';
+import config from '../../config.json';
 
 
-const baseUrl: string = `${process.env.REACT_APP_API_URL}/news`
+const baseUrl: string = `${config.base_url}/news`
 
 export const getAll = async () => {
   const {data} = await axios.get(baseUrl);

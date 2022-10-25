@@ -1,11 +1,12 @@
-import axios from 'axios';
+import { axios } from '..';
 import { LoginDataDto } from './model/login.data.dto';
 import { UserRegisterDto } from './model/user.register.dto';
 import { UserUpdateDto } from './model/user.update.dto';
+import config from '../../config.json';
 
-const loginUrl: string = `${process.env.REACT_APP_API_URL}/login`
-const registerUrl: string = `${process.env.REACT_APP_API_URL}/register`
-const baseUrl: string = `${process.env.REACT_APP_API_URL}/users`
+const loginUrl: string = `${config.base_url}/login`
+const registerUrl: string = `${config.base_url}/register`
+const baseUrl: string = `${config.base_url}/users`
 
 
 export const login = async (dto: LoginDataDto) => {

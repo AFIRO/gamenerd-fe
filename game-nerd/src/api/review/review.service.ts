@@ -1,8 +1,9 @@
-import axios from 'axios';
+import { axios } from '..';
 import { ReviewCreateDto } from './model/review.create.dto';
 import { ReviewUpdateDto } from './model/review.update.dto';
+import config from '../../config.json';
 
-const baseUrl: string = `${process.env.REACT_APP_API_URL}/reviews`
+const baseUrl: string = `${config.base_url}/reviews`
 
 export const getAll = async () => {
   const {data} = await axios.get(baseUrl);

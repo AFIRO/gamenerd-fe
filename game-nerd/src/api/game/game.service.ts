@@ -1,8 +1,9 @@
-import axios from 'axios';
+import { axios } from '..';
 import { GameCreateDto } from './models/game.create.dto';
 import { GameUpdateDto } from './models/game.update.dto';
+import config from '../../config.json';
 
-const baseUrl: string = `${process.env.REACT_APP_API_URL}/games`
+const baseUrl: string = `${config.base_url}/games`
 
 export const getAll = async () => {
   const {data} = await axios.get(baseUrl);
