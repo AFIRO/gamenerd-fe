@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useLogin, useSession } from '../../contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 type loginSubmitForm = {
-  username: string;
+  name: string;
   password: string;
 };
 
 const LoginFormComponent: React.FC = () => {
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
               .required('Username name is required')
-              .min(6,'Username must be at least 6 characters')
+              .min(5,'Username must be at least 5 characters')
               .max(25,'Username can not be longer than 25 characters'),
     password: Yup.string()
       .required('password is required')
   });
-
+  const login = useLogin()
+  const navigate = useNavigate()
+  const { loading, error, isAuthed} = useSession();
   const {
     register,
     handleSubmit,
@@ -27,9 +31,21 @@ const LoginFormComponent: React.FC = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = (data: loginSubmitForm) => {
+  useEffect(() => {
+		if (isAuthed) {
+			navigate('/',{replace:true})
+		}
+	}, [isAuthed, navigate]);
+
+
+  const onSubmit = useCallback(async (data: loginSubmitForm) => {
     console.log(data);
-  };
+    
+    const success = await login(data);
+    if (success) {
+      navigate('/',{replace:true})
+    }
+  },[login,navigate]);
 
   return (
     <div className="row justify-content-center p-4">
@@ -37,14 +53,21 @@ const LoginFormComponent: React.FC = () => {
     <div className="register-form container-fluid">
       <h1 className='text-light'>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
+      {
+						error ? (
+							<p className="text-red-500">
+								{error}
+							</p>
+						) : null
+					}
         <div className="form-group">
           <label>Username</label>
           <input
             type="text"
-            {...register('username')}
-            className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+            {...register('name')}
+            className={`form-control ${errors.name ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.username?.message}</div>
+          <div className="invalid-feedback">{errors.name?.message}</div>
         </div>
 
         <div className="form-group">
@@ -57,7 +80,7 @@ const LoginFormComponent: React.FC = () => {
           <div className="invalid-feedback">{errors.password?.message}</div>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-secondary m-4">
+          <button type="submit" disabled={loading} className="btn btn-secondary m-4">
             Submit
           </button>
           <button

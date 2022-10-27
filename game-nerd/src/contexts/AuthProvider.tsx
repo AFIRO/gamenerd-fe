@@ -8,19 +8,39 @@ const AuthContext = createContext(null);
 const useAuth = () => useContext(AuthContext);
 
 export const useSession = () => {
-	const { loading, token, user, ready, error } = useAuth();
-	return { loading, token, user, ready, error };
+	const { loading, token, user, ready, error, isAuthed, hasRoles } = useAuth();
+	return { loading, token, user, ready, error, isAuthed, hasRoles };
 };
 
 export const useLogin = () => {
-	const  login  = useAuth();
+	const { login } = useAuth();
 	return login;
 };
 
+export const useRegister = () => {
+	const { register } = useAuth();
+	return register;
+};
+
 export const useLogout = () => {
-	const  logout  = useAuth();
+	const { logout } = useAuth();
 	return logout;
 };
+
+function parseJwt(token) {
+	if (!token) return {};
+	const base64Url = token.split('.')[1];
+	const payload = Buffer.from(base64Url, 'base64');
+	const jsonPayload = payload.toString('ascii');
+	return JSON.parse(jsonPayload);
+}
+
+function parseExp(exp) {
+	if (!exp) return null;
+	if (typeof exp !== 'number') exp = Number(exp);
+	if (isNaN(exp)) return null;
+	return new Date(exp * 1000);
+}
 
 
 export const AuthProvider = ({
@@ -29,12 +49,14 @@ export const AuthProvider = ({
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [token, setToken] = useState(localStorage.getItem(JWT_TOKEN_KEY));
+	const [isAuthed, setAuthed] = useState(false);
+	const [hasRoles, setRoles] = useState([]);
 	const [user, setUser] = useState(null);
-  const [ready, setReady] = useState(false);
+	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
-    setReady(Boolean(token));
-    api.setAuthToken(token);
+		setReady(Boolean(token));
+		api.setAuthToken(token);
 		if (token) {
 			localStorage.setItem(JWT_TOKEN_KEY, token);
 		} else {
@@ -42,13 +64,36 @@ export const AuthProvider = ({
 		}
 	}, [token]);
 
+	const setSession = useCallback((token, user) => {
+		const { exp } = parseJwt(token);
+		const expiry = parseExp(exp);
+		const stillValid = expiry >= new Date();
+
+		if (stillValid) {
+			localStorage.setItem(JWT_TOKEN_KEY, token);
+		} else {
+			localStorage.removeItem(JWT_TOKEN_KEY);
+			token = null;
+		}
+
+		api.setAuthToken(token);
+		setToken(token);
+		if (user) {
+			setUser(user)
+			setRoles(user.roles)
+		}
+		else
+			setRoles([])
+		setReady(stillValid);
+	}, []);
+
 	const login = useCallback(async (name, password) => {
 		try {
 			setLoading(false);
 			setError('');
-			const { token, user } = await userService.login({name, password});
-			setToken(token);
-			setUser(user);
+			const { token, user } = await userService.login({name:name, password: password });
+			setSession(token, user);
+			setAuthed(true);
 			return true;
 		} catch (error) {
 			console.error(error);
@@ -57,22 +102,42 @@ export const AuthProvider = ({
 		} finally {
 			setLoading(false);
 		}
-	}, []);
+	}, [setSession]);
+
+	const register = useCallback(async (name, password) => {
+		try {
+			setLoading(false);
+			setError('');
+			const { token, user } = await userService.register({ name, password });
+			setSession(token, user);
+			setAuthed(true);
+			return true;
+		} catch (error) {
+			console.error(error);
+			setError('Register failed, try again');
+			return false;
+		} finally {
+			setLoading(false);
+		}
+	}, [setSession]);
 
 	const logout = useCallback(() => {
-		setToken(null);
-		setUser(null);
-	}, []);
+		setSession(null, null);
+		setAuthed(false);
+	}, [setSession]);
 
 	const value = useMemo(() => ({
 		token,
 		user,
-    ready,
+		ready,
 		error,
 		loading,
+		isAuthed,
+		hasRoles,
 		login,
 		logout,
-	}), [token, user, error, loading, login, logout,ready]);
+		register
+	}), [token, user, error, loading, login, logout, register, ready, isAuthed, hasRoles]);
 
 	return (
 		<AuthContext.Provider value={value}>
