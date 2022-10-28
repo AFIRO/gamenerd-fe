@@ -11,8 +11,8 @@ const baseUrl: string = `${config.base_url}/users`
 
 
 export const login = async (name:string,password:string) => {
-  const {data} = await axios.post(loginUrl, {name:name,password:password});
-	// const {data} = await axios.post("http://localhost:8000/login", {name:name,password:password});
+  const {data} = await axios.post(loginUrl, {name,password});
+	// const {data} = await axios.post("http://localhost:8000/login", {name,password});
 	return data;
 };
 
