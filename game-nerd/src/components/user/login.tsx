@@ -39,9 +39,8 @@ const LoginFormComponent: React.FC = () => {
 
 
   const onSubmit = useCallback(async (data: loginSubmitForm) => {
-    console.log(data);
-    
-    const success = await login(data);
+        
+    const success = await login("data");
     if (success) {
       navigate('/',{replace:true})
     }

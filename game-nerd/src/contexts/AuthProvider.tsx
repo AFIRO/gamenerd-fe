@@ -3,6 +3,8 @@ import * as userService from '../api/user/user.service';
 import config from '../config.json';
 import * as api from '../api';
 import {Buffer} from 'buffer';
+import { LoginDataDto } from '../api/user/model/login.data.dto';
+import { UserRegisterDto } from '../api/user/model/user.register.dto';
 
 const JWT_TOKEN_KEY = config.token_key;
 const AuthContext = createContext(null);
@@ -88,11 +90,11 @@ export const AuthProvider = ({
 		setReady(stillValid);
 	}, []);
 
-	const login = useCallback(async (name, password) => {
+	const login = useCallback(async (data: LoginDataDto) => {
 		try {
 			setLoading(false);
 			setError('');
-			const { token, user } = await userService.login(name, password );
+			const { token, user } = await userService.login(data);
 			setSession(token, user);
 			setAuthed(true);
 			return true;
@@ -105,11 +107,11 @@ export const AuthProvider = ({
 		}
 	}, [setSession]);
 
-	const register = useCallback(async (name, password) => {
+	const register = useCallback(async (data:UserRegisterDto) => {
 		try {
 			setLoading(false);
 			setError('');
-			const { token, user } = await userService.register({ name, password });
+			const { token, user } = await userService.register(data);
 			setSession(token, user);
 			setAuthed(true);
 			return true;
