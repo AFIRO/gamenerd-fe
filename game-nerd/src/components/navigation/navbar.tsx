@@ -25,7 +25,7 @@ export default function NavigationBar() {
           </Nav>
           <Nav>
             <NavDropdown title="User" id="basic-nav-dropdown">
-              {isAuthed ? (<><NavDropdown.Item><Navbar.Text>
+              {isAuthed ? (<><NavDropdown.Item><Navbar.Text className='text-dark'>
                 Signed in as: {user.name}
               </Navbar.Text></NavDropdown.Item>
                 <NavDropdown.Item> <button className='button-primary' onClick={handleLogout}>Logout</button></NavDropdown.Item></>

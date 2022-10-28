@@ -55,7 +55,7 @@ const LoginFormComponent: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
       {
 						error ? (
-							<p className="text-red-500">
+							<p className="text-danger">
 								{error}
 							</p>
 						) : null

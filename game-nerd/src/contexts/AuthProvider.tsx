@@ -2,6 +2,7 @@ import { createContext, useState, useCallback, useEffect, useMemo, useContext } 
 import * as userService from '../api/user/user.service';
 import config from '../config.json';
 import * as api from '../api';
+import {Buffer} from 'buffer';
 
 const JWT_TOKEN_KEY = config.token_key;
 const AuthContext = createContext(null);
@@ -91,7 +92,7 @@ export const AuthProvider = ({
 		try {
 			setLoading(false);
 			setError('');
-			const { token, user } = await userService.login({name:name, password: password });
+			const { token, user } = await userService.login(name, password );
 			setSession(token, user);
 			setAuthed(true);
 			return true;
