@@ -25,23 +25,33 @@ function App() {
         <Routes>
 
           <Route index element={
-            <RequireAuth requiredRole=''>
+            <RequireAuth>
               <GameListComponent />
             </RequireAuth>} />
 
-          <Route path="games" element={<RequireAuth requiredRole=''><GameListComponent /></RequireAuth>} />
-          <Route path="news" element={<RequireAuth requiredRole=''><NewsListComponent /></RequireAuth>} />
-          <Route path="/games/news/:id" element={<RequireAuth requiredRole=''><GameNewsComponent /></RequireAuth>} />
-          <Route path="/news/:id" element={<RequireAuth requiredRole=''><NewsItemComponent/></RequireAuth>} />
-          <Route path="reviews" element={<RequireAuth requiredRole=''><ReviewListComponent /></RequireAuth>} />
-          <Route path="/reviews/:id" element={<RequireAuth requiredRole=''><ReviewItemComponent/></RequireAuth>} />
-          <Route path="*" element={<RequireAuth requiredRole=''><NotFound /></RequireAuth>} />
-
+          <Route path="games" element={<RequireAuth><GameListComponent /></RequireAuth>} />
+          <Route path="games/create" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          <Route path="games/update/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          <Route path="games/delete/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          
+          <Route path="news" element={<RequireAuth><NewsListComponent /></RequireAuth>} />
+          <Route path="news/games/:id" element={<RequireAuth><GameNewsComponent /></RequireAuth>} />
+          <Route path="news/:id" element={<RequireAuth ><NewsItemComponent/></RequireAuth>} />
+          <Route path="news/create" element={<RequireAuth requiredRole='WRITER'><GameListComponent /></RequireAuth>} />
+          <Route path="news/update/:id" element={<RequireAuth requiredRole='WRITER'><GameListComponent /></RequireAuth>} />
+          <Route path="news/delete/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          
+          <Route path="reviews" element={<RequireAuth ><ReviewListComponent /></RequireAuth>} />
+          <Route path="reviews/:id" element={<RequireAuth ><ReviewItemComponent/></RequireAuth>} />
+          <Route path="reviews/create" element={<RequireAuth requiredRole='WRITER'><GameListComponent /></RequireAuth>} />
+          <Route path="reviews/update/:id" element={<RequireAuth requiredRole='WRITER'><GameListComponent /></RequireAuth>} />
+          <Route path="reviews/delete/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          
+          <Route path="*" element={<RequireAuth><NotFound /></RequireAuth>} />
           <Route path="/forbidden" element={<Forbidden/>} />
           <Route path="login" element={<LoginFormComponent />} />
           <Route path="register" element={<RegistrationFormComponent />} />
           
-
         </Routes>
         <Footer></Footer>
       </div>

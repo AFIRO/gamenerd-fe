@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Loader from '../navigation/loading';
 import * as reviewService from '../../api/review/review.service';
-import { News } from "../../api/news/model/news.model";
 import ErrorMessage from "../navigation/error";
 import { useParams } from "react-router-dom";
 import { Review } from "../../api/review/model/review.model";
