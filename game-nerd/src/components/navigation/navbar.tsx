@@ -1,27 +1,40 @@
 import { useCallback } from 'react';
+import { LinkContainer } from 'react-router-bootstrap'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { NavLink } from 'react-router-dom';
 import { useLogout, useSession } from '../../contexts/AuthProvider';
+
 
 export default function NavigationBar() {
   const { isAuthed, user } = useSession();
   const logout = useLogout();
 
-	const handleLogout = useCallback(() => {
-		logout();
-	}, [logout]);
+  const handleLogout = useCallback(() => {
+    logout();
+  }, [logout]);
+
+
   return (
     <Navbar bg="dark" variant='dark' expand="lg">
       <Container>
-        <Navbar.Brand>Game-Nerd</Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand>Game-Nerd</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/games">Games</Nav.Link>
-            <Nav.Link href="/news">News</Nav.Link>
-            <Nav.Link href="/reviews">Reviews</Nav.Link>
+            <LinkContainer to="/games">
+              <Nav.Link>Games</Nav.Link>
+              </LinkContainer>
+            <LinkContainer to="/news">
+              <Nav.Link>News</Nav.Link>
+              </LinkContainer>
+            <LinkContainer to="/reviews">
+              <Nav.Link>Reviews</Nav.Link>
+              </LinkContainer>
           </Nav>
           <Nav>
             <NavDropdown title="User" id="basic-nav-dropdown">
