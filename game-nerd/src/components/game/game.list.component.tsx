@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import GameListItemComponent from "./game.list.item.component"
 import * as gameService from '../../api/game/game.service';
-import Error from '../navigation/error';
 import Loader from '../navigation/loading';
 import { Game } from "../../api/game/models/game.model";
+import ErrorMessage from "../navigation/error";
 
 
 export default function GameListComponent() {
@@ -34,7 +34,7 @@ export default function GameListComponent() {
   return (
     <div>
       <Loader loading={loading} />
-      <Error error={error} />
+      <ErrorMessage error={error} />
       {!loading && !error ?
         <div>
           <h1 className="text-light">Overzicht van alle games</h1>

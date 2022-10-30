@@ -5,9 +5,10 @@ import * as axios from '../api';
 import {Buffer} from 'buffer';
 import { LoginDataDto } from '../api/user/model/login.data.dto';
 import { UserRegisterDto } from '../api/user/model/user.register.dto';
+import { User } from '../api/user/model/user.model';
 
 const JWT_TOKEN_KEY = config.token_key;
-const AuthContext = createContext(null);
+const AuthContext: React.Context<any> = createContext(null);
 const useAuth = () => useContext(AuthContext);
 
 export const useSession = () => {
@@ -49,13 +50,13 @@ function parseExp(exp) {
 export const AuthProvider = ({
 	children,
 }) => {
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState('');
-	const [token, setToken] = useState(localStorage.getItem(JWT_TOKEN_KEY));
-	const [isAuthed, setAuthed] = useState(false);
-	const [hasRoles, setRoles] = useState([]);
-	const [user, setUser] = useState(null);
-	const [ready, setReady] = useState(false);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string>('');
+	const [token, setToken] = useState<string>(localStorage.getItem(JWT_TOKEN_KEY));
+	const [isAuthed, setAuthed] = useState<boolean>(false);
+	const [hasRoles, setRoles] = useState<string[]>([]);
+	const [user, setUser] = useState<User>(null);
+	const [ready, setReady] = useState<boolean>(false);
 
 	useEffect(() => {
 		setReady(Boolean(token));
@@ -67,10 +68,10 @@ export const AuthProvider = ({
 		}
 	}, [token]);
 
-	const setSession = useCallback((token, user) => {
+	const setSession = useCallback((token:string, user:User) => {
 		const { exp } = parseJwt(token);
 		const expiry = parseExp(exp);
-		const stillValid = expiry >= new Date();
+		const stillValid: boolean = expiry >= new Date();
 
 		if (stillValid) {
 			localStorage.setItem(JWT_TOKEN_KEY, token);

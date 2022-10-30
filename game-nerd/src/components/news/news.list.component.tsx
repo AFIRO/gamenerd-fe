@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import NewsListItemComponent from "./news.list.item.component"
-import Error from '../navigation/error';
 import Loader from '../navigation/loading';
 import * as newsService from '../../api/news/news.service';
 import { News } from "../../api/news/model/news.model";
+import ErrorMessage from "../navigation/error";
 
 
-export default function GameListComponent() {
+export default function NewsListComponent() {
   const [error, setError] = useState<Error>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [news, setNews] = useState<News[]>([])
@@ -16,7 +16,8 @@ export default function GameListComponent() {
       try {
         setLoading(true);
         setError(null);
-        const data = await newsService.getAll();
+        let data: News[];
+        data = await newsService.getAll();
         setNews(data);
       } catch (error) {
         console.error(error);
@@ -26,17 +27,17 @@ export default function GameListComponent() {
       };
     }
     fetchNews();
-  }, [],);
+  }, []);
 
 
   return (
     <div>
     <Loader loading={loading} />
-    <Error error={error} />
+    <ErrorMessage error={error} />
     {!loading && !error ?
     <div>   <h1 className="text-light">Overzicht van alle news</h1>
       <div className="row justify-content-center p-4">
-        <div className="col-auto">
+        <div className="col-6">
           <table className="table table-bordered table-striped table-dark">
             <thead>
             <tr>

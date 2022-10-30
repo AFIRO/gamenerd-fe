@@ -1,5 +1,5 @@
 
-export default function Error({ error }) {
+export default function ErrorMessage({ error }) {
   if (error) {
     return (
       <div className="alert alert-danger">
