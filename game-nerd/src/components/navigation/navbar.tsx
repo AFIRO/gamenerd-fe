@@ -5,10 +5,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useLogout, useSession } from '../../contexts/AuthProvider';
+import { User } from '../../api/user/model/user.model';
 
 
 export default function NavigationBar() {
-  const { isAuthed, user } = useSession();
+  const {isAuthed, user }: {token:string, isAuthed:boolean, user: User} = useSession();
   const logout = useLogout();
 
   const handleLogout = useCallback(() => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import GameDeleteConfirmationComponent from './components/game/game.delete.confirmation';
 import GameListComponent from './components/game/game.list.component';
 import Footer from './components/navigation/footer';
 import Forbidden from './components/navigation/forbidden';
@@ -32,7 +33,7 @@ function App() {
           <Route path="games" element={<RequireAuth><GameListComponent /></RequireAuth>} />
           <Route path="games/create" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
           <Route path="games/update/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
-          <Route path="games/delete/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          <Route path="games/delete/:id" element={<RequireAuth requiredRole='ADMIN'><GameDeleteConfirmationComponent /></RequireAuth>} />
           
           <Route path="news" element={<RequireAuth><NewsListComponent /></RequireAuth>} />
           <Route path="news/games/:id" element={<RequireAuth><GameNewsComponent /></RequireAuth>} />
