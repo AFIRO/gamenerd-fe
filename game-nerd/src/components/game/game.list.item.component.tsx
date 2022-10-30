@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
+import { Game } from "../../api/game/models/game.model";
 
-interface Props {
-  id: string
-  name: string,
-  boxart: string
-}
-
-export default function GameListItemComponent(props:Props) {
+export default function GameListItemComponent(props: Game) {
 
       return (
         <tr className="align-middle">

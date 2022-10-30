@@ -3,12 +3,13 @@ import GameListItemComponent from "./game.list.item.component"
 import * as gameService from '../../api/game/game.service';
 import Error from '../navigation/error';
 import Loader from '../navigation/loading';
+import { Game } from "../../api/game/models/game.model";
 
 
 export default function GameListComponent() {
-  const [games, setGames] = useState([])
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [games, setGames] = useState<Game[]>([])
+  const [error, setError] = useState<Error>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
 
   useEffect(() => {
