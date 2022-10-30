@@ -8,7 +8,7 @@ const baseUrl: string = `${config.base_url}/reviews`
 export const getAll = async () => {
   const {data} = await axios.get(baseUrl);
 
-  return data.items;
+  return data;
 };
 
 export const getAllByGameId = async (id:string) => {

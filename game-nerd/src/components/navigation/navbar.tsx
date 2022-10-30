@@ -32,7 +32,6 @@ export default function NavigationBar() {
               ) :
                 (<><NavDropdown.Item href="/login">Login</NavDropdown.Item>
                   <NavDropdown.Item href="/register">Register</NavDropdown.Item></>)}
-
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

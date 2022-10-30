@@ -1,7 +1,7 @@
 import { createContext, useState, useCallback, useEffect, useMemo, useContext } from 'react';
 import * as userService from '../api/user/user.service';
 import config from '../config.json';
-import * as api from '../api';
+import * as axios from '../api';
 import {Buffer} from 'buffer';
 import { LoginDataDto } from '../api/user/model/login.data.dto';
 import { UserRegisterDto } from '../api/user/model/user.register.dto';
@@ -59,7 +59,7 @@ export const AuthProvider = ({
 
 	useEffect(() => {
 		setReady(Boolean(token));
-		api.setAuthToken(token);
+		axios.setAuthToken(token);
 		if (token) {
 			localStorage.setItem(JWT_TOKEN_KEY, token);
 		} else {
@@ -79,7 +79,7 @@ export const AuthProvider = ({
 			token = null;
 		}
 
-		api.setAuthToken(token);
+		axios.setAuthToken(token);
 		setToken(token);
 		if (user) {
 			setUser(user)
@@ -87,7 +87,7 @@ export const AuthProvider = ({
 		}
 		else
 			setRoles([])
-		setReady(stillValid);
+			setReady(stillValid);
 	}, []);
 
 	const login = useCallback(async (data: LoginDataDto) => {

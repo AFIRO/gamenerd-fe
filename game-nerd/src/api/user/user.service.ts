@@ -10,11 +10,8 @@ const registerUrl: string = `${config.base_url}/register`
 const baseUrl: string = `${config.base_url}/users`
 
 
-export const login = async (dto:LoginDataDto) => {
-
-  
+export const login = async (dto:LoginDataDto) => {   
   const {data} = await axios.post(loginUrl, dto);
-	// const {data} = await axios.post("http://localhost:8000/login", {name,password});
 	return data;
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import GAME_DATA from '../../api/mock-games';
 
 type gameSubmitForm = {
   id: string,
@@ -28,7 +27,6 @@ const GameCreateComponentForm: React.FC = () => {
 
   const onSubmit = (data: gameSubmitForm) => {
     console.log(data);
-    GAME_DATA.push(data)
   };
 
   return (
