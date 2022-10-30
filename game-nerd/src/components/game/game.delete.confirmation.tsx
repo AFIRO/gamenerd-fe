@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Game } from "../../api/game/models/game.model";
 import * as gameService from '../../api/game/game.service';
 import ErrorMessage from "../navigation/error";
@@ -47,7 +47,7 @@ export default function GameDeleteConfirmationComponent() {
         <div className="m-5">
           <h1 className="text-light">Je staat op het punt om {game.name} te verwijderen.</h1>
           <h2 className="text-danger">Opgelet, dit zal ook de gekoppelde recensie en nieuwsberichten verwijderen.</h2>
-         <a href="/games"><button className="btn btn-danger m-5" onClick={handleDelete}>Bevestigen</button></a>
+          <button className="btn btn-danger m-5" onClick={handleDelete}>Bevestigen</button>
           <Link to={`/games`}><button className="btn btn-warning">Annuleren</button></Link>
         </div>
         : null}
