@@ -1,6 +1,4 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { UserPasswordUpdateDto } from './api/user/model/user.update.password.dto';
 import './App.css';
 import GameCreateFormComponent from './components/game/game.create.form';
 import GameDeleteConfirmationComponent from './components/game/game.delete.confirmation';
