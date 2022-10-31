@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -37,7 +37,7 @@ export default function GameCreateFormComponent(){
     try {
       const success = await gameService.save(data);
       if (success) {
-        navigate('/',{replace:true})
+        navigate('/games',{replace:true})
       }
     } catch (error) {
       console.log(error);

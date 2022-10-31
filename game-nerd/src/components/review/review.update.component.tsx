@@ -2,22 +2,25 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import * as newsService from '../../api/news/news.service';
+import * as reviewService from '../../api/review/review.service';
 import * as gameService from '../../api/game/game.service';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ErrorMessage from '../navigation/error';
 import { User } from '../../api/user/model/user.model';
 import { Game } from '../../api/game/models/game.model';
 import Loader from '../navigation/loading';
 import { useSession } from '../../contexts/AuthProvider';
+import { Review } from '../../api/review/model/review.model';
 
-export default function NewsCreateFormComponent() {
-  type newsSubmitForm = {
+export default function ReviewUpdateFormComponent() {
+  type reviewSubmitForm = {
+    id:string
     content: string;
+    score: number
     gameId: string;
     writerId:string;
   };
-
+  const reviewId = useParams().id
   const validationSchema = Yup.object().shape({
     content: Yup.string()
       .required('Content is required')
@@ -26,11 +29,16 @@ export default function NewsCreateFormComponent() {
     gameId: Yup.string()
       .required('gameId is required')
       .min(1, 'gameId must be at least 1 characters')
-      .max(200, 'gameId can not be longer than 200 characters')
+      .max(200, 'gameId can not be longer than 200 characters'),
+    score: Yup.number()
+      .required("A score is required")
+      .min(0,"Score must be between 0 and 10")
+      .max(10,"Score must be between 0 and 10")
   });
   const navigate = useNavigate()
   const [error, setError] = useState<Error>(null)
   const [games, setGames] = useState<Game[]>(null)
+  const [review,setReview] = useState<Review>(null)
   const [loading, setLoading] = useState<boolean>(true);
   const {user}: { user: User } = useSession();
 
@@ -40,7 +48,9 @@ export default function NewsCreateFormComponent() {
         setLoading(true);
         setError(null);
         const gameData = await gameService.getAll();
+        const reviewData = await reviewService.getById(reviewId)
         setGames(gameData);
+        setReview(reviewData)
       } catch (error) {
         console.error(error);
         setError(new Error(error.response.data.message));
@@ -49,29 +59,30 @@ export default function NewsCreateFormComponent() {
       };
     }
     fetchData();
-  }, [],);
+  }, [reviewId],);
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<newsSubmitForm>({
+  } = useForm<reviewSubmitForm>({
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = useCallback(async (data: newsSubmitForm) => {
+  const onSubmit = useCallback(async (data: reviewSubmitForm) => {
     try {
+      data.id = reviewId
       data.writerId = user.id;
-      const success = await newsService.save(data);
+      const success = await reviewService.update(reviewId,data);
       if (success) {
-        navigate('/news', { replace: true })
+        navigate('/reviews', { replace: true })
       }
     } catch (error) {
       console.log(error);
       setError(new Error(error.response.data.message));
     }
-  }, [navigate, user.id]);
+  }, [navigate, user.id, reviewId]);
 
   return (
     <div>
@@ -81,15 +92,12 @@ export default function NewsCreateFormComponent() {
         <div className="row justify-content-center p-4 text-light">
           <div className="col-3">
             <div className="register-form container-fluid">
-              <h1 className='text-light'>Nieuws item aanmaken</h1>
+              <h1 className='text-light'>Review updaten</h1>
               <h2 className='text-light'>Schrijver: {user.name}</h2>
               <form onSubmit={handleSubmit(onSubmit)}>
-                {error ?
-                  <ErrorMessage error={error}></ErrorMessage> : null
-                }
                 <div className="form-group">
-                  <label className='m-1'>Content van item</label>
-                  <input
+                  <label className='m-1'>Content van review</label>
+                  <input defaultValue={review.content}
                     type="textfield"
                     {...register('content')}
                     className={`form-control ${errors.content ? 'is-invalid' : ''}`}
@@ -98,9 +106,19 @@ export default function NewsCreateFormComponent() {
                 </div>
 
                 <div className="form-group">
+                  <label className='m-1'>Score op 10</label>
+                  <input defaultValue={review.score}
+                    type="text"
+                    {...register('score')}
+                    className={`form-control ${errors.score ? 'is-invalid' : ''} `}
+                  />
+                  <div className="invalid-feedback">{errors.score?.message}</div>
+                </div>
+
+                <div className="form-group">
                   <label className='m-1'>Game</label>
                   <select {...register('gameId')}
-                    defaultValue=""
+                    defaultValue={review.game.id}
                     className={`form-control ${errors.gameId ? 'is-invalid' : ''} form-select`}
                   >
                     <option disabled> -- Kies een spel -- </option>

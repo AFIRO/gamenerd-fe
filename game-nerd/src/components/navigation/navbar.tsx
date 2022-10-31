@@ -44,6 +44,8 @@ export default function NavigationBar() {
               {isAuthed ? (<><NavDropdown.Item><Navbar.Text className='text-dark'>
                 Signed in as: {user.name}
               </Navbar.Text></NavDropdown.Item>
+              <LinkContainer to={`/users/password/${user.id}`}>
+                <NavDropdown.Item> <button className='button-primary'>Change Password</button></NavDropdown.Item></LinkContainer>
                 <NavDropdown.Item> <button className='button-primary' onClick={handleLogout}>Logout</button></NavDropdown.Item></>
               ) :
                 (<><NavDropdown.Item href="/login">Login</NavDropdown.Item>

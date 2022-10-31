@@ -5,6 +5,7 @@ import { UserUpdateDto } from './model/user.update.dto';
 import config from '../../config.json';
 import { UserWithToken } from './model/user.token';
 import { User } from './model/user.model';
+import { UserPasswordUpdateDto } from './model/user.update.password.dto';
 
 
 const loginUrl: string = `${config.base_url}/login`
@@ -39,6 +40,11 @@ export const getByIdWithRoles = async (id:string) : Promise<User> => {
 
 export const update = async (id:string, dto: UserUpdateDto): Promise<User>  => {
   const {data} = await axios.put(`${baseUrl}/${id}`, dto);
+  return data;
+}
+
+export const updatePassword = async (id:string, dto: UserPasswordUpdateDto): Promise<User>  => {
+  const {data} = await axios.put(`${baseUrl}/password/${id}`, dto);
   return data;
 }
 
