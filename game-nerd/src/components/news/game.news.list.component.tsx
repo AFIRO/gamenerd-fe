@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { Game } from "../../api/game/models/game.model";
 import { News } from "../../api/news/model/news.model";
 import * as gameService from '../../api/game/game.service';
@@ -7,6 +7,7 @@ import * as newsService from '../../api/news/news.service';
 import Loader from "../navigation/loading";
 import ErrorMessage from "../navigation/error";
 import NewsListItemComponent from "./news.list.item.component";
+import { useSession } from "../../contexts/AuthProvider";
 
 export default function GameNewsComponent() {
   const gameId = useParams().id;
@@ -14,6 +15,8 @@ export default function GameNewsComponent() {
   const [news, setNews] = useState<News[]>([])
   const [error, setError] = useState<Error>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const {hasRoles}: { hasRoles: string[] } = useSession();
+
 
   useEffect(() => {
     const getData = async () => {
@@ -40,6 +43,7 @@ export default function GameNewsComponent() {
       <ErrorMessage error={error} />
       {!loading && !error ?
         <div>   <h1 className="text-light">Overzicht van alle news over {game.name}</h1>
+         {hasRoles.includes("WRITER") ?  <Link to={`/news/create`}><button className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
       <div className="row justify-content-center p-4">
         <div className="col-6">
           <table className="table table-bordered table-striped table-dark">
@@ -48,7 +52,9 @@ export default function GameNewsComponent() {
               <td>Game</td>
               <td>Schrijver</td>
               <td>Korte inhoud</td>
-              <td></td>
+              <td>Link</td>
+              {hasRoles.includes("WRITER") ? <td>Writer Opties</td> : null}
+              {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
               </tr>
             </thead>
             <tbody>

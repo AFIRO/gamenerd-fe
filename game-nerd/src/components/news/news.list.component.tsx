@@ -4,12 +4,14 @@ import Loader from '../navigation/loading';
 import * as newsService from '../../api/news/news.service';
 import { News } from "../../api/news/model/news.model";
 import ErrorMessage from "../navigation/error";
-
+import { useSession } from "../../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function NewsListComponent() {
   const [error, setError] = useState<Error>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [news, setNews] = useState<News[]>([])
+  const {hasRoles}: { hasRoles: string[] } = useSession();
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -36,6 +38,7 @@ export default function NewsListComponent() {
     <ErrorMessage error={error} />
     {!loading && !error ?
     <div>   <h1 className="text-light">Overzicht van alle news</h1>
+    {hasRoles.includes("WRITER") ?  <Link to={`/news/create`}><button className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
       <div className="row justify-content-center p-4">
         <div className="col-6">
           <table className="table table-bordered table-striped table-dark">
@@ -44,7 +47,9 @@ export default function NewsListComponent() {
               <td>Game</td>
               <td>Schrijver</td>
               <td>Korte inhoud</td>
-              <td></td>
+              <td>Link</td>
+              {hasRoles.includes("WRITER") ? <td>Writer Opties</td> : null}
+              {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
               </tr>
             </thead>
             <tbody>
