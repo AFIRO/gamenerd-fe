@@ -6,20 +6,21 @@ import * as gameService from '../../api/game/game.service';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../navigation/error';
 
-type gameSubmitForm = {
-  name: string;
-  boxart: string;
-};
+export default function GameCreateFormComponent(){
+  type gameSubmitForm = {
+    name: string;
+    boxart: string;
+  };
 
-const GameCreateFormComponent: React.FC = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
               .required('Game name is required')
-              .min(1,'Username must be at least 1 characters')
-              .max(200,'Username can not be longer than 200 characters'),
+              .min(1,'Game name must be at least 1 characters')
+              .max(200,'Game name can not be longer than 200 characters'),
     boxart: Yup.string()
       .required('Boxart is required')
-      .min(1,'boxart must be at least 200 characters')
+      .min(1,'boxart must be at least 1 character')
+      .max(1,'boxart can not be longer than 200 characters')
   });
   const navigate = useNavigate()
   const [error,setError] = useState<Error>(null)
@@ -46,9 +47,9 @@ const GameCreateFormComponent: React.FC = () => {
 
   return (
     <div className="row justify-content-center p-4 text-light">
-      <div className="col-2">
+      <div className="col-3">
     <div className="register-form container-fluid">
-      <h1 className='text-light'>Game</h1>
+      <h1 className='text-light'>Game aanmaken</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
       {error ? 
               <ErrorMessage error={error}></ErrorMessage> : null
@@ -90,5 +91,3 @@ const GameCreateFormComponent: React.FC = () => {
     </div>
   );
 };
-
-export default GameCreateFormComponent;

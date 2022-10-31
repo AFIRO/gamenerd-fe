@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import GameListItemComponent from "./game.list.item.component"
 import * as gameService from '../../api/game/game.service';
 import Loader from '../navigation/loading';
@@ -14,23 +14,22 @@ export default function GameListComponent() {
   const [loading, setLoading] = useState<boolean>(true);
   const {hasRoles}: { hasRoles: string[] } = useSession();
 
-  const fetchGames = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await gameService.getAll();
-      setGames(data);
-    } catch (error) {
-      console.error(error);
-      setError(new Error(error.response.data.message));
-    } finally {
-      setLoading(false);
-    };
-  },[])
-
   useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await gameService.getAll();
+        setGames(data);
+      } catch (error) {
+        console.error(error);
+        setError(new Error(error.response.data.message));
+      } finally {
+        setLoading(false);
+      };
+    }
     fetchGames();
-  }, [fetchGames],);
+  },[],);
 
   return (
     <div>

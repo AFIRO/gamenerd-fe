@@ -48,6 +48,7 @@ export default function UserDeleteConfirmationComponent() {
         !user.roles.includes("ADMIN")? 
         <div className="m-5">
         <h1 className="text-light">Je staat op het punt om {user.name} te verwijderen.</h1>
+        <h2 className="text-danger">Opgelet, dit zal ook de gekoppelde nieuwsberichten en reviews verwijderen.</h2>
         <button className="btn btn-danger m-5" onClick={handleDelete}>Bevestigen</button>
         <Link to={`/games`}><button className="btn btn-warning">Annuleren</button></Link>
       </div> : <ErrorMessage error={new Error("Het is niet toegestaan om een admin te verwijderen")}></ErrorMessage>

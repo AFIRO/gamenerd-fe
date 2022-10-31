@@ -5,12 +5,14 @@ import * as Yup from 'yup';
 import { useRegister, useSession } from '../../contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
-type registerSubmitForm = {
-  name: string;
-  password: string;
-};
 
-const RegistrationFormComponent: React.FC = () => {
+
+export default function RegistrationFormComponent(){
+  type registerSubmitForm = {
+    name: string;
+    password: string;
+  };
+
   const validationSchema = Yup.object().shape({
     username: Yup.string()
               .required('Username is required')
@@ -96,5 +98,3 @@ const RegistrationFormComponent: React.FC = () => {
     </div>
   );
 };
-
-export default RegistrationFormComponent;
