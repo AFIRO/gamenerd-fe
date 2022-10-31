@@ -22,7 +22,7 @@ export default function UserDeleteConfirmationComponent() {
       }
       catch (error) {
         console.log(error);
-        setError(error)
+        setError(new Error(error.response.data.message));
       } finally {
         setLoading(false);
       }
@@ -36,7 +36,7 @@ export default function UserDeleteConfirmationComponent() {
       navigate('/users', { replace: true })
     } catch (error) {
       console.log(error);
-      setError(error)
+      setError(new Error(error.response.data.message));
     }
   }, [userId, navigate])
 

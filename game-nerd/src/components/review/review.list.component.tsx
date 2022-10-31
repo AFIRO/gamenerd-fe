@@ -22,7 +22,7 @@ export default function ReviewListComponent() {
         setReviews(data);
       } catch (error) {
         console.error(error);
-        setError(error);
+        setError(new Error(error.response.data.message));
       } finally {
         setLoading(false);
       };

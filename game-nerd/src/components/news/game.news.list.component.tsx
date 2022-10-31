@@ -29,7 +29,7 @@ export default function GameNewsComponent() {
         setGame(game);
       } catch (error) {
         console.error(error);
-        setError(error);
+        setError(new Error(error.response.data.message));;
       } finally {
         setLoading(false);
       };

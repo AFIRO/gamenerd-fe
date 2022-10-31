@@ -21,7 +21,7 @@ export default function ReviewDeleteConfirmationComponent() {
       setReview(data)}
       catch (error) {
         console.log(error);
-        setError(error)
+        setError(new Error(error.response.data.message));
       } finally {
         setLoading(false);
       }
@@ -35,7 +35,7 @@ export default function ReviewDeleteConfirmationComponent() {
       navigate('/reviews',{replace:true})
     } catch (error) {
       console.log(error);
-      setError(error)
+      setError(new Error(error.response.data.message));
     }
   }, [reviewId,navigate])
 

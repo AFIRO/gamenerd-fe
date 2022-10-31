@@ -13,7 +13,7 @@ export default function ReviewItemComponent() {
   const [review, setReview] = useState<Review>(null)
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchReview = async () => {
       try {
         setLoading(true);
         setError(null);
@@ -22,12 +22,12 @@ export default function ReviewItemComponent() {
         setReview(data);
       } catch (error) {
         console.error(error);
-        setError(error);
+        setError(new Error(error.response.data.message));
       } finally {
         setLoading(false);
       };
     }
-    fetchNews();
+    fetchReview();
   }, [reviewId]);
 
 

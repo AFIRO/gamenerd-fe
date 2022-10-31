@@ -19,7 +19,7 @@ export default function UserListComponent() {
       setUsers(data);
     } catch (error) {
       console.error(error);
-      setError(error);
+      setError(new Error(error.response.data.message));
     } finally {
       setLoading(false);
     };
