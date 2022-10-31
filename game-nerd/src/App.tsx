@@ -17,6 +17,8 @@ import ReviewItemComponent from './components/review/review.item.component';
 import ReviewListComponent from './components/review/review.list.component';
 import LoginFormComponent from './components/user/login';
 import RegistrationFormComponent from './components/user/register';
+import UserDeleteConfirmationComponent from './components/user/user.delete.confirmation';
+import UserListComponent from './components/user/user.list.component';
 import { AuthProvider } from './contexts/AuthProvider';
 
 function App() {
@@ -50,6 +52,10 @@ function App() {
           <Route path="reviews/update/:id" element={<RequireAuth requiredRole='WRITER'><GameListComponent /></RequireAuth>} />
           <Route path="reviews/delete/:id" element={<RequireAuth requiredRole='ADMIN'><ReviewDeleteConfirmationComponent /></RequireAuth>} />
           
+          <Route path="users" element={<RequireAuth requiredRole='ADMIN'><UserListComponent /></RequireAuth>} />  
+          <Route path="users/update/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />  
+          <Route path="users/delete/:id" element={<RequireAuth requiredRole='ADMIN'><UserDeleteConfirmationComponent /></RequireAuth>} />  
+
           <Route path="*" element={<RequireAuth><NotFound /></RequireAuth>} />
           <Route path="/forbidden" element={<Forbidden/>} />
           <Route path="login" element={<LoginFormComponent />} />

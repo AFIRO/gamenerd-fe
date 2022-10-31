@@ -22,6 +22,21 @@ export const register = async (dto: UserRegisterDto): Promise<UserWithToken> => 
 	return data;
 };
 
+export const getAll = async (): Promise<User[]> => {
+  const {data} = await axios.get(baseUrl);
+  return data;
+};
+
+export const getById = async (id:string) : Promise<User> => {
+  const {data} = await axios.get(`${baseUrl}/${id}`);
+  return data;
+};
+
+export const getByIdWithRoles = async (id:string) : Promise<User> => {
+  const {data} = await axios.get(`${baseUrl}/roles/${id}`);
+  return data;
+};
+
 export const update = async (id:string, dto: UserUpdateDto): Promise<User>  => {
   const {data} = await axios.put(`${baseUrl}/${id}`, dto);
   return data;

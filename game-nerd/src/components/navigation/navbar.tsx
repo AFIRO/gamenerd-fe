@@ -9,7 +9,7 @@ import { User } from '../../api/user/model/user.model';
 
 
 export default function NavigationBar() {
-  const {isAuthed, user }: {token:string, isAuthed:boolean, user: User} = useSession();
+  const {isAuthed, user, hasRoles }: {token:string, isAuthed:boolean, user: User, hasRoles:string[]} = useSession();
   const logout = useLogout();
 
   const handleLogout = useCallback(() => {
@@ -35,6 +35,9 @@ export default function NavigationBar() {
             <LinkContainer to="/reviews">
               <Nav.Link>Reviews</Nav.Link>
               </LinkContainer>
+            {hasRoles.includes("ADMIN")?<LinkContainer to="/users">
+              <Nav.Link>Users</Nav.Link>
+              </LinkContainer> : null }  
           </Nav>
           <Nav>
             <NavDropdown title="User" id="basic-nav-dropdown">
