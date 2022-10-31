@@ -1,10 +1,8 @@
-# Examenopdracht Front-end Web Development / Web Services
+# Examenopdracht Front-end Web Development
 
-> Schrap hierboven wat niet past
-
-- Student: VOORNAAM NAAM
-- Studentennummer: xxxxxxxxx
-- E-mailadres: voornaam.naam@student.hogent.be
+- Student: ANDREEAS FIROIU
+- Studentennummer: 077350AF
+- E-mailadres: andreeas.firoiu@student.hogent.be
 
 ## Vereisten
 
