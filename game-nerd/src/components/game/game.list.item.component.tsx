@@ -3,7 +3,7 @@ import { Game } from "../../api/game/models/game.model";
 import { useSession } from "../../contexts/AuthProvider";
 
 export default function GameListItemComponent(props: Game) {
-  const {hasRoles}: { isAuthed: boolean, hasRoles: string[] } = useSession();
+  const {hasRoles}: { hasRoles: string[] } = useSession();
 
       return (
         <tr className="align-middle">

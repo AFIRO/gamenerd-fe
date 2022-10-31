@@ -1,24 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Game } from "../../api/game/models/game.model";
-import * as gameService from '../../api/game/game.service';
+import * as reviewService from '../../api/review/review.service';
 import ErrorMessage from "../navigation/error";
 import Loader from "../navigation/loading";
+import { Review } from "../../api/review/model/review.model";
 
-export default function GameDeleteConfirmationComponent() {
+export default function ReviewDeleteConfirmationComponent() {
   const [error, setError] = useState<Error>(null);
-  const [game, setGame] = useState<Game>(null);
+  const [review, setReview] = useState<Review>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const gameId = useParams().id;
+  const reviewId = useParams().id;
   const navigate = useNavigate()
 
   useEffect(()=>{
-    const getGame = async () => {
+    const getReview = async () => {
       try{
       setLoading(true);
       setError(null)
-      const data = await gameService.getById(gameId)    
-      setGame(data)}
+      const data = await reviewService.getById(reviewId)    
+      setReview(data)}
       catch (error) {
         console.log(error);
         setError(error)
@@ -26,18 +26,18 @@ export default function GameDeleteConfirmationComponent() {
         setLoading(false);
       }
     }
-    getGame()
-  },[gameId])
+    getReview()
+  },[reviewId])
   
   const handleDelete = useCallback(async () => {
     try {
-      await gameService.deleteById(gameId);
-      navigate('/games',{replace:true})
+      await reviewService.deleteById(reviewId);
+      navigate('/reviews',{replace:true})
     } catch (error) {
       console.log(error);
       setError(error)
     }
-  }, [gameId,navigate])
+  }, [reviewId,navigate])
 
   return (
     <div>
@@ -45,8 +45,8 @@ export default function GameDeleteConfirmationComponent() {
       <ErrorMessage error={error} />
       {!loading && !error ?
         <div className="m-5">
-          <h1 className="text-light">Je staat op het punt om {game.name} te verwijderen.</h1>
-          <h2 className="text-danger">Opgelet, dit zal ook de gekoppelde recensie en nieuwsberichten verwijderen.</h2>
+          <h1 className="text-light">Je staat op het punt om een nieuwsitem over {review.game.name} te verwijderen.</h1>
+          <h2 className="text-light">Dit item is geschreven door {review.writer.name}.</h2>
           <button className="btn btn-danger m-5" onClick={handleDelete}>Bevestigen</button>
           <Link to={`/games`}><button className="btn btn-warning">Annuleren</button></Link>
         </div>
