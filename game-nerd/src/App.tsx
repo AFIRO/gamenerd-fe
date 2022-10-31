@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import GameCreateFormComponent from './components/game/game.create.form';
 import GameDeleteConfirmationComponent from './components/game/game.delete.confirmation';
 import GameListComponent from './components/game/game.list.component';
 import Footer from './components/navigation/footer';
@@ -35,7 +36,7 @@ function App() {
             </RequireAuth>} />
 
           <Route path="games" element={<RequireAuth><GameListComponent /></RequireAuth>} />
-          <Route path="games/create" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
+          <Route path="games/create" element={<RequireAuth requiredRole='ADMIN'><GameCreateFormComponent /></RequireAuth>} />
           <Route path="games/update/:id" element={<RequireAuth requiredRole='ADMIN'><GameListComponent /></RequireAuth>} />
           <Route path="games/delete/:id" element={<RequireAuth requiredRole='ADMIN'><GameDeleteConfirmationComponent /></RequireAuth>} />
           

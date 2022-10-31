@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import * as gameService from '../../api/game/game.service';
+import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../navigation/error';
 
 type gameSubmitForm = {
-  id: string,
-  gameName: string;
+  name: string;
   boxart: string;
 };
 
-const GameCreateComponentForm: React.FC = () => {
+const GameCreateFormComponent: React.FC = () => {
   const validationSchema = Yup.object().shape({
-    gameName: Yup.string().required('Game name is required'),
+    name: Yup.string()
+              .required('Game name is required')
+              .min(1,'Username must be at least 1 characters')
+              .max(200,'Username can not be longer than 200 characters'),
     boxart: Yup.string()
-      .required('boxart is required')
+      .required('Boxart is required')
+      .min(1,'boxart must be at least 200 characters')
   });
-
+  const navigate = useNavigate()
+  const [error,setError] = useState<Error>(null)
   const {
     register,
     handleSubmit,
@@ -25,25 +32,39 @@ const GameCreateComponentForm: React.FC = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = (data: gameSubmitForm) => {
-    console.log(data);
-  };
+  const onSubmit = useCallback(async (data: gameSubmitForm) => {
+    try {
+      const success = await gameService.save(data);
+      if (success) {
+        navigate('/',{replace:true})
+      }
+    } catch (error) {
+      console.log(error);
+      setError(new Error(error.response.data.message));
+    }    
+  },[navigate]);
 
   return (
+    <div className="row justify-content-center p-4 text-light">
+      <div className="col-2">
     <div className="register-form container-fluid">
+      <h1 className='text-light'>Game</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
+      {error ? 
+              <ErrorMessage error={error}></ErrorMessage> : null
+					}
         <div className="form-group">
-          <label>Game name</label>
+          <label className='m-1'>Game name</label>
           <input
             type="text"
-            {...register('gameName')}
-            className={`form-control ${errors.gameName ? 'is-invalid' : ''}`}
+            {...register('name')}
+            className={`form-control ${errors.name ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.gameName?.message}</div>
+          <div className="invalid-feedback">{errors.name?.message}</div>
         </div>
 
         <div className="form-group">
-          <label>Boxart URL</label>
+          <label className='m-1'>Boxart</label>
           <input
             type="text"
             {...register('boxart')}
@@ -52,20 +73,22 @@ const GameCreateComponentForm: React.FC = () => {
           <div className="invalid-feedback">{errors.boxart?.message}</div>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-secondary m-4">
             Submit
           </button>
           <button
             type="button"
             onClick={() => reset()}
-            className="btn btn-warning float-right"
+            className="btn btn-danger m-4"
           >
             Reset
           </button>
         </div>
       </form>
+      </div>
+      </div>
     </div>
   );
 };
 
-export default GameCreateComponentForm;
+export default GameCreateFormComponent;

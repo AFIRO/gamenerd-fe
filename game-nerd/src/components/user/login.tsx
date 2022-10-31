@@ -13,11 +13,11 @@ type loginSubmitForm = {
 const LoginFormComponent: React.FC = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-              .required('Username name is required')
+              .required('Username is required')
               .min(5,'Username must be at least 5 characters')
               .max(25,'Username can not be longer than 25 characters'),
     password: Yup.string()
-      .required('password is required')
+      .required('Password is required')
   });
   const login = useLogin()
   const navigate = useNavigate()
@@ -47,7 +47,7 @@ const LoginFormComponent: React.FC = () => {
   },[login,navigate]);
 
   return (
-    <div className="row justify-content-center p-4">
+    <div className="row justify-content-center p-4 text-light">
       <div className="col-2">
     <div className="register-form container-fluid">
       <h1 className='text-light'>Login</h1>
@@ -60,7 +60,7 @@ const LoginFormComponent: React.FC = () => {
 						) : null
 					}
         <div className="form-group">
-          <label>Username</label>
+          <label className='m-1'>Username</label>
           <input
             type="text"
             {...register('name')}
@@ -70,7 +70,7 @@ const LoginFormComponent: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <label>Password</label>
+          <label className='m-1'>Password</label>
           <input
             type="text"
             {...register('password')}
