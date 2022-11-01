@@ -9,5 +9,6 @@ export class ErrorIdentifier{
   public static readonly NO_GAMES = "No games in database";
   public static readonly USER_ALREADY_EXISTS = "Error while creating: data already present in other user entity."
   public static readonly WRONG_CREDENTIALS = "The given user and password do not match."
+  public static readonly NO_USER_FOUND = "No User found"
 }
 

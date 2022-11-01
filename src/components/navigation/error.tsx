@@ -71,7 +71,7 @@ export default function ErrorMessage({ error }) {
           return (
             <div className="alert alert-danger">
               <h4 className="alert-heading">Login error</h4>
-              Credentials invalid. Please try again.
+              <p cy-data="error-message">Credentials invalid. Please try again.</p>
             </div>
           );
 
@@ -79,15 +79,23 @@ export default function ErrorMessage({ error }) {
         return (
           <div className="alert alert-danger">
             <h4 className="alert-heading">Registration error</h4>
-            Username already exists. Please choose another name.
+            <p cy-data="error-message">Username already exists. Please choose another name.</p>
           </div>
         );
+
+        case ErrorIdentifier.NO_USER_FOUND:
+          return (
+            <div className="alert alert-danger">
+              <h4 className="alert-heading">Login Error</h4>
+              <p cy-data="error-message">User not found. Please register before logging in.</p>
+            </div>
+          );
 
       default:
         return (
           <div className="alert alert-danger">
             <h4 className="alert-heading">An error occured</h4>
-            {error.message || JSON.stringify(error)}
+            <p cy-data="error-message">{error.message || JSON.stringify(error)}</p>
           </div>
         );
     }
