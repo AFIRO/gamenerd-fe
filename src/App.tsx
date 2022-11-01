@@ -38,7 +38,7 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <NavigationBar></NavigationBar>
+        <NavigationBar/>
         <Routes>
 
           <Route index element={
@@ -79,7 +79,7 @@ function App() {
           <Route path="register" element={<RequireNoAuth><RegistrationFormComponent /></RequireNoAuth>} />
           
         </Routes>
-        <Footer></Footer>
+        <Footer/>
       </div>
     </AuthProvider>
   );
