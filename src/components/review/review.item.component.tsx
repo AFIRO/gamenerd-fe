@@ -34,9 +34,9 @@ export default function ReviewItemComponent() {
   return (
     <div>
       <Loader loading={loading} />
-      <ErrorMessage error={error} />
+      <ErrorMessage error={error} /> 
       {!loading && !error ?
-        <div className="text-light">   <h1 className="text-light">News over {review.game.name}</h1>
+        <div className="text-light">   <h1 className="text-light">Review over {review.game.name}</h1>
           <h2 >Geschreven door {review.writer.name}</h2>
           <h3 >Score: {review.score}/10</h3>
           <p>{review.content}</p>

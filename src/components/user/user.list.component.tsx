@@ -4,6 +4,7 @@ import Loader from '../navigation/loading';
 import ErrorMessage from "../navigation/error";
 import { User } from "../../api/user/model/user.model";
 import UserListItemComponent from "./user.list.item.component";
+import { Link } from "react-router-dom";
 
 
 export default function UserListComponent() {
@@ -36,6 +37,7 @@ export default function UserListComponent() {
       {!loading && !error ?
         <div>
           <h1 className="text-light">Overzicht van alle users</h1>
+          <Link to={`/users/create`}><button className="btn btn-secondary mt-3">User aanmaken</button></Link>
           <div className="row justify-content-center p-4">
             <div className="col-6">
               <table className="table table-bordered table-striped table-dark table-hover">

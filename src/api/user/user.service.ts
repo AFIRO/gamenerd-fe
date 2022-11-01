@@ -6,6 +6,7 @@ import config from '../../config.json';
 import { UserWithToken } from './model/user.token';
 import { User } from './model/user.model';
 import { UserPasswordUpdateDto } from './model/user.update.password.dto';
+import { UserCreateDto } from './model/user.create.dto';
 
 
 const loginUrl: string = `${config.base_url}/login`
@@ -35,6 +36,11 @@ export const getById = async (id:string) : Promise<User> => {
 
 export const getByIdWithRoles = async (id:string) : Promise<User> => {
   const {data} = await axios.get(`${baseUrl}/roles/${id}`);
+  return data;
+};
+
+export const save = async (dto:UserCreateDto): Promise<User[]> => {
+  const {data} = await axios.post(baseUrl, dto);
   return data;
 };
 

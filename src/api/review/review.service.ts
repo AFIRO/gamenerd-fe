@@ -12,6 +12,12 @@ export const getAll = async (): Promise<Review[]> => {
   return data;
 };
 
+export const getAllByGameId = async (id:string): Promise<Review[]> => {
+  const {data} = await axios.get(baseUrl + "/byGame/" + id);
+
+  return data;
+};
+
 export const getById = async (id:string): Promise<Review> => {
   const {data} = await axios.get(`${baseUrl}/${id}`);
   return data;

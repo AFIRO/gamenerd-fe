@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useRegister, useSession } from '../../contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../navigation/error';
 
 
 
@@ -14,7 +15,7 @@ export default function RegistrationFormComponent(){
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
               .required('Username is required')
               .min(5,'Username must be at least 6 characters')
               .max(25,'Username can not be longer than 25 characters'),
@@ -54,13 +55,7 @@ export default function RegistrationFormComponent(){
     <div className="register-form container-fluid">
       <h1 className='text-light'>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-      {
-						error ? (
-							<p className="text-red-500">
-								{error}
-							</p>
-						) : null
-					}
+      <ErrorMessage error={error}></ErrorMessage>
         <div className="form-group">
           <label className='m-1'>Username</label>
           <input

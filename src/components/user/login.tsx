@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useLogin, useSession } from '../../contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../navigation/error';
 
 
 export default function  LoginFormComponent() {
@@ -54,13 +55,7 @@ export default function  LoginFormComponent() {
     <div className="register-form container-fluid">
       <h1 className='text-light'>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-      {
-						error ? (
-							<p className="text-danger">
-								{error}
-							</p>
-						) : null
-					}
+      <ErrorMessage error={error}></ErrorMessage>
         <div className="form-group">
           <label className='m-1'>Username</label>
           <input

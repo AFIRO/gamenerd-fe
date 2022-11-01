@@ -15,6 +15,7 @@ import NewsDeleteConfirmationComponent from './components/news/news.delete.confi
 import NewsItemComponent from './components/news/news.item.component';
 import NewsListComponent from './components/news/news.list.component';
 import NewsUpdateFormComponent from './components/news/news.update.component';
+import GameReviewComponent from './components/review/game.review.list.component';
 import ReviewCreateFormComponent from './components/review/review.create.component';
 import ReviewDeleteConfirmationComponent from './components/review/review.delete..confirmation';
 import ReviewItemComponent from './components/review/review.item.component';
@@ -22,6 +23,7 @@ import ReviewListComponent from './components/review/review.list.component';
 import ReviewUpdateFormComponent from './components/review/review.update.component';
 import LoginFormComponent from './components/user/login';
 import RegistrationFormComponent from './components/user/register';
+import UserCreateFormComponent from './components/user/user.create.component';
 import UserDeleteConfirmationComponent from './components/user/user.delete.confirmation';
 import UserListComponent from './components/user/user.list.component';
 import UserPasswordUpdateFormComponent from './components/user/user.password.update.component';
@@ -54,12 +56,14 @@ function App() {
           <Route path="news/delete/:id" element={<RequireAuth requiredRole='ADMIN'><NewsDeleteConfirmationComponent /></RequireAuth>} />
           
           <Route path="reviews" element={<RequireAuth ><ReviewListComponent /></RequireAuth>} />
+          <Route path="reviews/games/:id" element={<RequireAuth><GameReviewComponent /></RequireAuth>} />
           <Route path="reviews/:id" element={<RequireAuth ><ReviewItemComponent/></RequireAuth>} />
           <Route path="reviews/create" element={<RequireAuth requiredRole='WRITER'><ReviewCreateFormComponent /></RequireAuth>} />
           <Route path="reviews/update/:id" element={<RequireAuth requiredRole='WRITER'><ReviewUpdateFormComponent /></RequireAuth>} />
           <Route path="reviews/delete/:id" element={<RequireAuth requiredRole='ADMIN'><ReviewDeleteConfirmationComponent /></RequireAuth>} />
           
-          <Route path="users" element={<RequireAuth requiredRole='ADMIN'><UserListComponent /></RequireAuth>} />  
+          <Route path="users" element={<RequireAuth requiredRole='ADMIN'><UserListComponent /></RequireAuth>} /> 
+          <Route path="users/create" element={<RequireAuth requiredRole='ADMIN'><UserCreateFormComponent /></RequireAuth>} />   
           <Route path="users/update/:id" element={<RequireAuth requiredRole='ADMIN'><UserUpdateFormComponent /></RequireAuth>} />  
           <Route path="users/delete/:id" element={<RequireAuth requiredRole='ADMIN'><UserDeleteConfirmationComponent /></RequireAuth>} />  
           <Route path="users/password/:id" element={<RequireAuth ><UserPasswordUpdateFormComponent /></RequireAuth>} />  

@@ -2,7 +2,7 @@ import { createContext, useState, useCallback, useEffect, useMemo, useContext } 
 import * as userService from '../api/user/user.service';
 import config from '../config.json';
 import * as axios from '../api';
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer';
 import { LoginDataDto } from '../api/user/model/login.data.dto';
 import { UserRegisterDto } from '../api/user/model/user.register.dto';
 import { User } from '../api/user/model/user.model';
@@ -68,7 +68,7 @@ export const AuthProvider = ({
 		}
 	}, [token]);
 
-	const setSession = useCallback((token:string, user:User) => {
+	const setSession = useCallback((token: string, user: User) => {
 		const { exp } = parseJwt(token);
 		const expiry = parseExp(exp);
 		const stillValid: boolean = expiry >= new Date();
@@ -88,7 +88,7 @@ export const AuthProvider = ({
 		}
 		else
 			setRoles([])
-			setReady(stillValid);
+		setReady(stillValid);
 	}, []);
 
 	const login = useCallback(async (data: LoginDataDto) => {
@@ -101,14 +101,14 @@ export const AuthProvider = ({
 			return true;
 		} catch (error) {
 			console.error(error);
-			setError('Login failed, try again');
+			setError(error.response.data.message);
 			return false;
 		} finally {
 			setLoading(false);
 		}
 	}, [setSession]);
 
-	const register = useCallback(async (data:UserRegisterDto) => {
+	const register = useCallback(async (data: UserRegisterDto) => {
 		try {
 			setLoading(false);
 			setError('');
@@ -118,7 +118,9 @@ export const AuthProvider = ({
 			return true;
 		} catch (error) {
 			console.error(error);
-			setError('Register failed, try again');
+			console.log(error.response.data.message);
+			
+			setError(error.response.data.message);
 			return false;
 		} finally {
 			setLoading(false);
