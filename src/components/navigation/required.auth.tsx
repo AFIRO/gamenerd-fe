@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useSession } from "../../contexts/AuthProvider";
 
-export function RequireAuth({ children, requiredRole }: { children: JSX.Element, requiredRole?: string }) {
-  const {isAuthed, hasRoles }: { token: string, isAuthed: boolean, hasRoles: string[] } = useSession();
+export function RequireAuth({ children, requiredRole}: { children: JSX.Element, requiredRole?: string }) {
+  const {isAuthed, hasRoles }: { isAuthed: boolean, hasRoles: string[] } = useSession();
 
   if (requiredRole) {
     if (isAuthed && !hasRoles.includes(requiredRole)) {
@@ -12,7 +12,7 @@ export function RequireAuth({ children, requiredRole }: { children: JSX.Element,
 
   if (!isAuthed) {
     return <Navigate to="/login" />;
-  }
+  } 
 
   return children;
 }

@@ -9,6 +9,7 @@ import Forbidden from './components/navigation/forbidden';
 import NavigationBar from './components/navigation/navbar';
 import NotFound from './components/navigation/notfound';
 import { RequireAuth } from './components/navigation/required.auth';
+import { RequireNoAuth } from './components/navigation/required.not.auth';
 import GameNewsComponent from './components/news/game.news.list.component';
 import NewsCreateFormComponent from './components/news/news.create.component';
 import NewsDeleteConfirmationComponent from './components/news/news.delete.confirmation';
@@ -73,9 +74,9 @@ function App() {
           <Route path="users/password/:id" element={<RequireAuth ><UserPasswordUpdateFormComponent /></RequireAuth>} />  
 
           <Route path="*" element={<RequireAuth><NotFound /></RequireAuth>} />
-          <Route path="/forbidden" element={<Forbidden/>} />
-          <Route path="login" element={<LoginFormComponent />} />
-          <Route path="register" element={<RegistrationFormComponent />} />
+          <Route path="/forbidden" element={<RequireAuth ><Forbidden/></RequireAuth>} />
+          <Route path="login" element={<RequireNoAuth><LoginFormComponent /></RequireNoAuth>} />
+          <Route path="register" element={<RequireNoAuth><RegistrationFormComponent /></RequireNoAuth>} />
           
         </Routes>
         <Footer></Footer>
