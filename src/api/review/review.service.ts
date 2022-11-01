@@ -18,6 +18,11 @@ export const getAllByGameId = async (id:string): Promise<Review[]> => {
   return data;
 };
 
+export const getAllByUserId = async (id:string): Promise<Review[]> => {
+  const {data} = await axios.get(`${baseUrl}/byWriter/${id}`);
+  return data;
+};
+
 export const getById = async (id:string): Promise<Review> => {
   const {data} = await axios.get(`${baseUrl}/${id}`);
   return data;

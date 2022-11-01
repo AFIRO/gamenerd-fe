@@ -9,8 +9,8 @@ export default function GameListItemComponent(props: Game) {
         <tr className="align-middle">
           <td>{props.name}</td>
           <td><img src={props.boxart} alt="" className="small-image"/></td>
-          <td><Link to={`/news/games/${props.id}`}><button type="button" className="btn btn-secondary">Nieuws</button></Link></td>
-          <td><Link to={`/reviews/games/${props.id}`}><button type="button" className="btn btn-secondary">Reviews</button></Link></td>
+          <td><Link to={`/news/game/${props.id}`}><button type="button" className="btn btn-secondary">Nieuws</button></Link></td>
+          <td><Link to={`/reviews/game/${props.id}`}><button type="button" className="btn btn-secondary">Reviews</button></Link></td>
           {hasRoles.includes("ADMIN")? 
           <td><Link to={`/games/update/${props.id}`}><button type="button" className="btn btn-warning m-4">EDIT</button></Link>
           <Link to={`/games/delete/${props.id}`}><button type="button" className="btn btn-danger">DELETE</button></Link></td>: null}

@@ -31,6 +31,18 @@ export default function ErrorMessage({ error }) {
           </div>
         );
 
+        case ErrorIdentifier.REVIEWS_NOT_FOUND_WRITER:
+          return (
+            <div className="text-light"> <h2>Deze user heeft nog geen reviews geschreven.</h2>
+            </div>
+          );
+  
+        case ErrorIdentifier.NEWS_NOT_FOUND_WRITER:
+          return (
+            <div className="text-light"> <h2>Deze user heeft nog geen nieuws items geschreven.</h2>
+            </div>
+          );
+
       case ErrorIdentifier.NO_GAMES:
         return (
           <div className="text-light"> <h2>Er zijn geen games in de achterliggende databasis.</h2>

@@ -45,7 +45,10 @@ export default function UserListComponent() {
                   <tr>
                   <td>Naam</td>
                   <td>Rollen</td>
+                  <td>Alle Nieuws</td>
+                  <td>Alle Reviews</td>
                   <td>Admin Opties</td>
+
                   </tr>
                 </thead>
                 <tbody>
