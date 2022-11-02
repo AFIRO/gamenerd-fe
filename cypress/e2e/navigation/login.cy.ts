@@ -1,12 +1,10 @@
-import { TestResponses } from "../../test.responses";
+
 import config from '../../../src/config.json';
 const baseUrl = config.base_url_frontend
 
 describe("Login screen tests", () => {
 	it("should login with correct credentials", () => {
-		cy.mockLoginResponseAdmin()
-		cy.mockGamesGetAllResponse()
-		cy.login("admin","admin")
+    cy.loginAsAdmin()
 		cy.get("h1").should("have.text",'Overzicht van alle games')
 	});
 

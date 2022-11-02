@@ -8,9 +8,7 @@ describe("Footer tests", () => {
 	});
 
   it("should be visible after login", () => {
-    cy.mockLoginResponseAdmin()
-		cy.mockGamesGetAllResponse()
-		cy.login("admin","admin")
+    cy.loginAsUser()
 		cy.get('[cy-data=footer]').should("be.visible")
 	});
 

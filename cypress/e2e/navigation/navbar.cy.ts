@@ -11,9 +11,7 @@ describe("Navbar tests", () => {
 	});
 
   it("When logged as admin. Should show user link, logged user and logout button. Should not show register and login.", () => {
-    cy.mockLoginResponseAdmin()
-		cy.mockGamesGetAllResponse()
-    cy.login("admin","admin")
+    cy.loginAsAdmin()
 		cy.get("[cy-data=navbar-user-link]").should("be.visible")
     cy.get("[cy-data=navbar-user-dropdown]").click()
     cy.get("[cy-data=navbar-user-name]").should("have.text","Current user: admin")
@@ -24,9 +22,7 @@ describe("Navbar tests", () => {
 	});
 
   it("When logged as user. Should show, logged user and logout button. Should not show user link, register and login.", () => {
-    cy.mockLoginResponseUser()
-		cy.mockGamesGetAllResponse()
-    cy.login("user","user")
+    cy.loginAsUser()
     cy.get("[cy-data=navbar-user-dropdown]").click()
     cy.get("[cy-data=navbar-user-name]").should("have.text","Current user: user")
     cy.get("[cy-data=navbar-button-login]").should("not.exist")

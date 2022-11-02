@@ -20,7 +20,7 @@ export default function GameCreateFormComponent(){
     boxart: Yup.string()
       .required('Boxart is required')
       .min(1,'boxart must be at least 1 character')
-      .max(1,'boxart can not be longer than 200 characters')
+      .max(200,'boxart can not be longer than 200 characters')
   });
   const navigate = useNavigate()
   const [error,setError] = useState<Error>(null)
@@ -56,28 +56,28 @@ export default function GameCreateFormComponent(){
 					}
         <div className="form-group">
           <label className='m-1'>Game name</label>
-          <input
+          <input cy-data="game-name"
             type="text"
             {...register('name')}
             className={`form-control ${errors.name ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.name?.message}</div>
+          <div cy-data="game-name-error" className="invalid-feedback">{errors.name?.message}</div>
         </div>
 
         <div className="form-group">
           <label className='m-1'>Boxart</label>
-          <input
+          <input cy-data="game-boxart"
             type="text"
             {...register('boxart')}
             className={`form-control ${errors.boxart ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.boxart?.message}</div>
+          <div cy-data="game-boxart-error" className="invalid-feedback">{errors.boxart?.message}</div>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-secondary m-4">
+          <button cy-data="game-submit" type="submit" className="btn btn-secondary m-4">
             Submit
           </button>
-          <button
+          <button cy-data="game-reset"
             type="button"
             onClick={() => reset()}
             className="btn btn-danger m-4"

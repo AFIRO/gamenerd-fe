@@ -37,18 +37,18 @@ export default function GameListComponent() {
       <ErrorMessage error={error} />
       {!loading && !error ?
         <div>
-          <h1 className="text-light">Overzicht van alle games</h1>
-          {hasRoles.includes("ADMIN") ?  <Link to={`/games/create`}><button className="btn btn-secondary mt-3">Game aanmaken</button></Link> : null}
+          <h1 cy-data="game-list-header" className="text-light">Overzicht van alle games</h1>
+          {hasRoles.includes("ADMIN") ?  <Link to={`/games/create`}><button cy-data="game-create" className="btn btn-secondary mt-3">Game aanmaken</button></Link> : null}
           <div className="row justify-content-center p-4">
             <div className="col-6">
-              <table className="table table-bordered table-striped table-dark table-hover">
+              <table cy-data="game-table" className="table table-bordered table-striped table-dark table-hover">
                 <thead>
                   <tr>
                   <td>Naam</td>
                   <td>Boxart</td>
                   <td>Nieuws</td>
                   <td>Review</td>
-                  {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
+                  {hasRoles.includes("ADMIN") ? <td cy-data="admin-options">Admin Opties</td> : null}
                   </tr>
                 </thead>
                 <tbody>

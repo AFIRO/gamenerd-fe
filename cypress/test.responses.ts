@@ -71,4 +71,14 @@ export class TestResponses {
       }
     ]
   }
+
+  public static createMockError(errorMessage:string) {
+    return {statusCode: 400,
+      body:{
+            error: "Bad Request",
+            message: errorMessage,
+            statusCode: 400
+          }
+        }
+  }
 }
