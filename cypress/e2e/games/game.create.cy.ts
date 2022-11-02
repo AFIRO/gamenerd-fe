@@ -1,7 +1,6 @@
 import { log } from 'console';
 import config from '../../../src/config.json';
 import { TestResponses } from '../../test.responses';
-const baseUrl = config.base_url_frontend
 const backUrl = config.base_url_backend
 
 describe("Game create tests", () => {

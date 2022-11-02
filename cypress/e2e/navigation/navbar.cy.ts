@@ -1,4 +1,3 @@
-import { TestResponses } from "../../test.responses";
 import config from '../../../src/config.json';
 const baseUrl = config.base_url_frontend
 describe("Navbar tests", () => {

@@ -1,6 +1,8 @@
 
 import config from '../../../src/config.json';
+import { TestResponses } from '../../test.responses';
 const baseUrl = config.base_url_frontend
+const backUrl = config.base_url_backend
 
 describe("Login screen tests", () => {
 	it("should login with correct credentials", () => {
@@ -9,12 +11,14 @@ describe("Login screen tests", () => {
 	});
 
 	it("should not login with unknown user", () => {
+		cy.intercept(backUrl+"/login", TestResponses.createMockError("No User found")) 
 		cy.visit(baseUrl)
 		cy.login("admin2","admin2")
 		cy.get('[cy-data=error-message]').should("have.text",'"No User found"')
 	});
 
 	it("should not login with incorrect credentials", () => {
+		cy.intercept(backUrl+"/login", TestResponses.createMockError("The given user and password do not match")) 
 		cy.visit(baseUrl)
 		cy.login("admin","admin2")
 		cy.get('[cy-data=error-message]').should("have.text",'"The given user and password do not match"')

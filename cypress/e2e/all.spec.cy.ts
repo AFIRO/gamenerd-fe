@@ -1,0 +1,7 @@
+import './games/game.create.cy'
+import './games/game.list.cy'
+import './games/game.list.item.cy'
+import './navigation/footer.cy'
+import './navigation/login.cy'
+import './navigation/navbar.cy'
+import './navigation/register.cy'

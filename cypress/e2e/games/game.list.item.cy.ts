@@ -26,7 +26,7 @@ describe("Gamelist item tests", () => {
 	});
 
   it("As user, not render protected buttons", () => {
-		cy.loginAsAdmin()
+		cy.loginAsUser()
 		cy.get('[cy-data="game-list-item-edit-button"]').should("not.exist")
     cy.get('[cy-data="game-list-item-delete-button"]').should("not.exist")
 	});

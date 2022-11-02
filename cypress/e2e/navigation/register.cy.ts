@@ -1,6 +1,7 @@
 import { TestResponses } from "../../test.responses";
 import config from '../../../src/config.json';
 const baseUrl = config.base_url_frontend
+const backUrl = config.base_url_backend
 
 describe("Register screen tests", () => {
 	it("should register with correct credentials", () => {
@@ -11,8 +12,9 @@ describe("Register screen tests", () => {
 	});
 
 	it("should not register with known user", () => {
+		cy.intercept(backUrl+"/register", TestResponses.createMockError("User already exists")) 
 		cy.register("admin","admin")
-		cy.get('[cy-data=error-message]').should("have.text",'"Error while creating: data already present in other user entity."')
+		cy.get('[cy-data=error-message]').should("have.text",'"User already exists"')
 	});
 
 	it("should reset fields when hitting reset", () => {

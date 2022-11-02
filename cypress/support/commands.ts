@@ -13,6 +13,8 @@ Cypress.Commands.add('login', (username:string,password:string) => {
 })
 
 Cypress.Commands.add('loginAsAdmin', () => {
+  cy.intercept('POST', backUrl +'/login', TestResponses.LOGIN_RESPONSE_ADMIN)
+  cy.intercept('GET',backUrl + "/games", TestResponses.GAMES_RESPONSE)
   cy.visit(frontUrl+'/login')
   cy.get('[cy-data=username-input]').type("admin");
   cy.get('[cy-data=password-input]').type("admin");
