@@ -59,30 +59,31 @@ export default function RegistrationFormComponent(){
         <div className="form-group">
           <label className='m-1'>Username</label>
           <input
-            type="text"
+            type="text" cy-data="username-input"
             {...register('name')}
             className={`form-control ${errors.name ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.name?.message}</div>
+          <div cy-data="error-username" className="invalid-feedback">{errors.name?.message}</div>
         </div>
 
         <div className="form-group">
           <label className='m-1'>Password</label>
           <input
-            type="text"
+            type="text" cy-data="password-input"
             {...register('password')}
             className={`form-control ${errors.password ? 'is-invalid' : ''}`}
           />
-          <div className="invalid-feedback">{errors.password?.message}</div>
+          <div cy-data="error-password" className="invalid-feedback">{errors.password?.message}</div>
         </div>
         <div className="form-group">
-          <button type="submit" disabled={loading} className="btn btn-secondary m-4">
+          <button type="submit" cy-data="submit-input" disabled={loading} className="btn btn-secondary m-4">
             Submit
           </button>
           <button
             type="button"
             onClick={() => reset()}
             className="btn btn-danger m-4"
+            cy-data="reset-input"
           >
             Reset
           </button>

@@ -1,25 +1,23 @@
+import { TestResponses } from "../../test.responses";
+
+
 describe("Login screen tests", () => {
 	it("should login with correct credentials", () => {
-		cy.visit('http://localhost:3000')
-		cy.get('[cy-data=username-input]').type("admin");
-		cy.get('[cy-data=password-input]').type("admin");
-		cy.get('[cy-data=submit-input]').click();
+		cy.intercept('POST', 'http://localhost:9000/api/login', TestResponses.LOGIN_RESPONSE)
+		cy.intercept('get',"http://localhost:9000/api/games", TestResponses.GAMES_RESPONSE )
+		cy.login("admin","admin")
 		cy.get("h1").should("have.text",'Overzicht van alle games')
 	});
 
 	it("should not login with unknown user", () => {
 		cy.visit('http://localhost:3000')
-		cy.get('[cy-data=username-input]').type("admin2");
-		cy.get('[cy-data=password-input]').type("admin2");
-		cy.get('[cy-data=submit-input]').click();
+		cy.login("admin2","admin2")
 		cy.get('[cy-data=error-message]').should("have.text",'"No User found"')
 	});
 
 	it("should not login with incorrect credentials", () => {
 		cy.visit('http://localhost:3000')
-		cy.get('[cy-data=username-input]').type("admin");
-		cy.get('[cy-data=password-input]').type("admin2");
-		cy.get('[cy-data=submit-input]').click();
+		cy.login("admin","admin2")
 		cy.get('[cy-data=error-message]').should("have.text",'"The given user and password do not match"')
 	});
 
