@@ -17,7 +17,7 @@ export default function  LoginFormComponent() {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
               .required('Username is required')
-              .min(5,'Username must be at least 5 characters')
+              .min(4,'Username must be at least 4 characters')
               .max(25,'Username can not be longer than 25 characters'),
     password: Yup.string()
       .required('Password is required')

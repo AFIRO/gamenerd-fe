@@ -9,9 +9,9 @@ import { UserPasswordUpdateDto } from './model/user.update.password.dto';
 import { UserCreateDto } from './model/user.create.dto';
 
 
-const loginUrl: string = `${config.base_url}/login`
-const registerUrl: string = `${config.base_url}/register`
-const baseUrl: string = `${config.base_url}/users`
+const loginUrl: string = `${config.base_url_backend}/login`
+const registerUrl: string = `${config.base_url_backend}/register`
+const baseUrl: string = `${config.base_url_backend}/users`
 
 
 export const login = async (dto:LoginDataDto): Promise<UserWithToken> => {   

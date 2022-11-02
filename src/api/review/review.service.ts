@@ -4,7 +4,7 @@ import { ReviewUpdateDto } from './model/review.update.dto';
 import config from '../../config.json';
 import { Review } from './model/review.model';
 
-const baseUrl: string = `${config.base_url}/reviews`
+const baseUrl: string = `${config.base_url_backend}/reviews`
 
 export const getAll = async (): Promise<Review[]> => {
   const {data} = await axios.get(baseUrl);

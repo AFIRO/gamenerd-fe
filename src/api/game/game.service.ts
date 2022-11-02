@@ -4,7 +4,7 @@ import { GameUpdateDto } from './models/game.update.dto';
 import config from '../../config.json';
 import { Game } from './models/game.model';
 
-const baseUrl: string = `${config.base_url}/games`
+const baseUrl: string = `${config.base_url_backend}/games`
 
 export const getAll = async (): Promise<Game[]> => {
   const {data} = await axios.get(baseUrl);

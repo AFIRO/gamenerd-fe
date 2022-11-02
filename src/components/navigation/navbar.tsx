@@ -36,20 +36,20 @@ export default function NavigationBar() {
               <Nav.Link>Reviews</Nav.Link>
               </LinkContainer>
             {hasRoles.includes("ADMIN")?<LinkContainer to="/users">
-              <Nav.Link>Users</Nav.Link>
+              <Nav.Link cy-data="navbar-user-link">Users</Nav.Link>
               </LinkContainer> : null }  
           </Nav>
           <Nav>
-            <NavDropdown title="User" id="basic-nav-dropdown">
-              {isAuthed ? (<><NavDropdown.Item><Navbar.Text className='text-dark'>
-                Signed in as: {user.name}
-              </Navbar.Text></NavDropdown.Item>
+            <NavDropdown cy-data="navbar-user-dropdown" title="User" id="basic-nav-dropdown">
+              {isAuthed ? (<><NavDropdown.Item disabled cy-data="navbar-user-name" className="text-dark">
+                Current user: {user.name}
+                </NavDropdown.Item>
               <LinkContainer to={`/users/password/${user.id}`}>
-                <NavDropdown.Item> <button className='button-primary'>Change Password</button></NavDropdown.Item></LinkContainer>
-                <NavDropdown.Item> <button className='button-primary' onClick={handleLogout}>Logout</button></NavDropdown.Item></>
+                <NavDropdown.Item cy-data="navbar-button-change-password"> Change Password </NavDropdown.Item></LinkContainer>
+                <NavDropdown.Item onClick={handleLogout} cy-data="navbar-button-logout"> Logout</NavDropdown.Item></>
               ) :
-                (<><NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                  <NavDropdown.Item href="/register">Register</NavDropdown.Item></>)}
+                (<><NavDropdown.Item cy-data="navbar-button-login" href="/login">Login</NavDropdown.Item>
+                  <NavDropdown.Item cy-data="navbar-button-register" href="/register">Register</NavDropdown.Item></>)}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

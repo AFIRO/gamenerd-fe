@@ -5,7 +5,7 @@ import config from '../../config.json';
 import { News } from './model/news.model';
 
 
-const baseUrl: string = `${config.base_url}/news`
+const baseUrl: string = `${config.base_url_backend}/news`
 
 export const getAll = async (): Promise<News[]>  => {
   const {data} = await axios.get(baseUrl);

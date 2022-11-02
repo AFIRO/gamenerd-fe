@@ -1,5 +1,5 @@
 export class TestResponses {
-  public static readonly LOGIN_RESPONSE = {
+  public static readonly LOGIN_RESPONSE_ADMIN = {
     statusCode: 200,
     body: {
       user: {
@@ -8,6 +8,33 @@ export class TestResponses {
         roles: [
           "ADMIN",
           "WRITER"
+        ]
+      },
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwicm9sZXMiOlsiQURNSU4iLCJXUklURVIiXSwiaWF0IjoxNjY3NDA0MzExLCJleHAiOjE2Njc0MDc5MTEsImF1ZCI6ImdhbWUubmVyZC5iZSIsImlzcyI6ImdhbWUubmVyZC5iZSIsInN1YiI6ImF1dGgifQ.SiXL5xWCQrd08uW8jYFTPDPrIrim05ICMoUyIsV0tWs"
+    }
+  }
+
+  public static readonly LOGIN_RESPONSE_WRITER = {
+    statusCode: 200,
+    body: {
+      user: {
+        id: "2",
+        name: "writer",
+        roles: [
+          "WRITER"
+        ]
+      },
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwicm9sZXMiOlsiQURNSU4iLCJXUklURVIiXSwiaWF0IjoxNjY3NDA0MzExLCJleHAiOjE2Njc0MDc5MTEsImF1ZCI6ImdhbWUubmVyZC5iZSIsImlzcyI6ImdhbWUubmVyZC5iZSIsInN1YiI6ImF1dGgifQ.SiXL5xWCQrd08uW8jYFTPDPrIrim05ICMoUyIsV0tWs"
+    }
+  }
+
+  public static readonly LOGIN_RESPONSE_USER = {
+    statusCode: 200,
+    body: {
+      user: {
+        id: "3",
+        name: "user",
+        roles: [
         ]
       },
       token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwicm9sZXMiOlsiQURNSU4iLCJXUklURVIiXSwiaWF0IjoxNjY3NDA0MzExLCJleHAiOjE2Njc0MDc5MTEsImF1ZCI6ImdhbWUubmVyZC5iZSIsImlzcyI6ImdhbWUubmVyZC5iZSIsInN1YiI6ImF1dGgifQ.SiXL5xWCQrd08uW8jYFTPDPrIrim05ICMoUyIsV0tWs"
