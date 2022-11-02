@@ -1,7 +1,3 @@
-import config from '../../../src/config.json';
-const baseUrl = config.base_url_frontend
-const backUrl = config.base_url_backend
-
 describe("Gamelist item tests", () => {
 	it("should be visible if games exist", () => {
 		cy.loginAsAdmin()
@@ -31,6 +27,5 @@ describe("Gamelist item tests", () => {
     cy.get('[cy-data="game-list-item-delete-button"]').should("not.exist")
 	});
 });
-
 
 export {}

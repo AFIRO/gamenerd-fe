@@ -38,7 +38,7 @@ export default function UserPasswordUpdateFormComponent() {
       data.id = userId;
       const success = await userService.updatePassword(userId, data);
       if (success) {
-        navigate('/users', { replace: true })
+        navigate('/games', { replace: true })
       }
     } catch (error) {
       console.log(error);
@@ -58,19 +58,19 @@ export default function UserPasswordUpdateFormComponent() {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                   <label className='m-1'>Passwoord</label>
-                  <input
+                  <input cy-data="password-password"
                     type="text"
                     {...register('password')}
                     className={`form-control ${errors.password ? 'is-invalid' : ''}`}
                   />
-                  <div className="invalid-feedback">{errors.password?.message}</div>
+                  <div cy-data="password-error" className="invalid-feedback">{errors.password?.message}</div>
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-secondary m-4">
+                  <button cy-data="password-submit" type="submit" className="btn btn-secondary m-4">
                     Submit
                   </button>
-                  <button
+                  <button cy-data="password-reset"
                     type="button"
                     onClick={() => reset()}
                     className="btn btn-danger m-4"

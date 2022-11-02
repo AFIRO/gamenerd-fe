@@ -1,6 +1,5 @@
-import { log } from 'console';
 import config from '../../../src/config.json';
-import { TestResponses } from '../../test.responses';
+import { TestResponses } from '../test.responses';
 const backUrl = config.base_url_backend
 
 describe("Game create tests", () => {
@@ -69,9 +68,6 @@ describe("Game create tests", () => {
     cy.get('[cy-data=generic-error]').should("be.visible")
     cy.get('[cy-data=error-message]').should("have.text","Generic Error")
   });
-
-
 });
-
 
 export { }

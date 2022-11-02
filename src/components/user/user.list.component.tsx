@@ -36,11 +36,11 @@ export default function UserListComponent() {
       <ErrorMessage error={error} />
       {!loading && !error ?
         <div>
-          <h1 className="text-light">Overzicht van alle users</h1>
-          <Link to={`/users/create`}><button className="btn btn-secondary mt-3">User aanmaken</button></Link>
+          <h1 cy-data="user-list-header" className="text-light">Overzicht van alle users</h1>
+          <Link to={`/users/create`}><button cy-data="user-create" className="btn btn-secondary mt-3">User aanmaken</button></Link>
           <div className="row justify-content-center p-4">
             <div className="col-6">
-              <table className="table table-bordered table-striped table-dark table-hover">
+              <table cy-data="user-list" className="table table-bordered table-striped table-dark table-hover">
                 <thead>
                   <tr>
                   <td>Naam</td>

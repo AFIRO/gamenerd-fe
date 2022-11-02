@@ -1,7 +1,4 @@
-import config from '../../../src/config.json';
-import { TestResponses } from '../../test.responses';
-const baseUrl = config.base_url_frontend
-const backUrl = config.base_url_backend
+import { TestResponses } from '../test.responses';
 
 describe("Gamelist tests", () => {
 	it("should be visible if games exist", () => {
@@ -37,6 +34,5 @@ describe("Gamelist tests", () => {
 	});
 
 });
-
 
 export {}

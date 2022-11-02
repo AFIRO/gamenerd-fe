@@ -1,4 +1,4 @@
-import { TestResponses } from "../../test.responses";
+import { TestResponses } from "../test.responses";
 import config from '../../../src/config.json';
 const baseUrl = config.base_url_frontend
 const backUrl = config.base_url_backend

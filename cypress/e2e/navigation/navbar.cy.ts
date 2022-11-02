@@ -27,10 +27,8 @@ describe("Navbar tests", () => {
     cy.get("[cy-data=navbar-button-login]").should("not.exist")
     cy.get("[cy-data=navbar-button-login]").should("not.exist")
     cy.get("[cy-data=navbar-button-register]").should("not.exist")
-    cy.get("[cy-data=navbar-button-change-password]").should("be.visible")
     cy.get("[cy-data=navbar-button-logout]").should("be.visible")
 	});
 });
-
 
 export {}

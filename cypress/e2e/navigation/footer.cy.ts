@@ -14,5 +14,4 @@ describe("Footer tests", () => {
 
 });
 
-
 export {}

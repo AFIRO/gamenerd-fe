@@ -81,16 +81,16 @@ export default function UserUpdateFormComponent() {
                 <div className="form-group">
                   <label className='m-1'>User name</label>
                   <input defaultValue={user.name}
-                    type="text"
+                    type="text" cy-data="user-name"
                     {...register('name')}
                     className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                   />
-                  <div className="invalid-feedback">{errors.name?.message}</div>
+                  <div cy-data="user-name-error" className="invalid-feedback">{errors.name?.message}</div>
                 </div>
 
                 <div className="form-group">
                   <label className='m-1'>Roles</label>
-                  <select {...register('roles')} multiple={true}
+                  <select cy-data="user-roles" {...register('roles')} multiple={true}
                     defaultValue={user.roles}
                     className={`form-control ${errors.roles ? 'is-invalid' : ''} form-select`}
                   >
@@ -101,10 +101,10 @@ export default function UserUpdateFormComponent() {
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-secondary m-4">
+                  <button cy-data="user-submit" type="submit" className="btn btn-secondary m-4">
                     Submit
                   </button>
-                  <button
+                  <button cy-data="user-reset"
                     type="button"
                     onClick={() => reset()}
                     className="btn btn-danger m-4"
