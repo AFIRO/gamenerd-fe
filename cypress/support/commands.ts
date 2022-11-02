@@ -66,6 +66,11 @@ Cypress.Commands.add('mockGamesGetAllResponse', () => {
   cy.intercept('GET',backUrl + "/games", TestResponses.GAMES_RESPONSE )
 })
 
+Cypress.Commands.add('mockGamesGetSpecificResponse', () => {
+  cy.intercept('GET',backUrl + "/games/1", TestResponses.GAME_RESPONSE )
+})
+
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -80,6 +85,7 @@ declare global {
       mockLoginResponseUser(): Chainable<void>
       mockRegisterResponse(): Chainable<void>
       mockGamesGetAllResponse(): Chainable<void>
+      mockGamesGetSpecificResponse(): Chainable<void>
     }
   }
 }

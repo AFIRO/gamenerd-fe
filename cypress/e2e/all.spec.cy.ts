@@ -1,6 +1,8 @@
 import './games/game.create.cy'
 import './games/game.list.cy'
 import './games/game.list.item.cy'
+import './games/game.update.cy'
+import './games/game.delete.cy'
 import './navigation/footer.cy'
 import './navigation/login.cy'
 import './navigation/navbar.cy'

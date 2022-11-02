@@ -10,7 +10,7 @@ describe("Gamelist item tests", () => {
 
   it("should have correct data based on mock", () => {
 		cy.loginAsAdmin()
-		cy.get('[cy-data="game-list-item-name"]').should("have.text","Devil May Cry 3: Dante's AwakeningBayonetta 2Devil May Cry 5Metal Gear Rising: RevengeanceDevil May Cry 4")
+		cy.get('[cy-data="game-list-item-name"]').eq(0).should("have.text","Devil May Cry 3: Dante's Awakening")
 	});
 
   it("render correct unprotected buttons", () => {

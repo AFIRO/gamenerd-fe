@@ -41,6 +41,12 @@ export class TestResponses {
     }
   }
 
+  public static readonly GAME_RESPONSE = {
+        "id": "1",
+        "name": "Devil May Cry 3: Dante's Awakening",
+        "boxart": "https://www.mobygames.com/images/covers/l/48031-devil-may-cry-3-dante-s-awakening-playstation-2-front-cover.jpg"
+  }
+
   public static readonly GAMES_RESPONSE = {
     statusCode: 200,
     body: [

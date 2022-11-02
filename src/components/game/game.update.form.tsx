@@ -83,27 +83,27 @@ export default function GameUpdateFormComponent() {
                 <div className="form-group">
                   <label className='m-1'>Game name</label>
                   <input defaultValue={game.name}
-                    type="text"
+                    type="text" cy-data="game-name"
                     {...register('name')}
                     className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                   />
-                  <div className="invalid-feedback">{errors.name?.message}</div>
+                  <div cy-data="game-name-error" className="invalid-feedback">{errors.name?.message}</div>
                 </div>
 
                 <div className="form-group">
                   <label className='m-1'>Boxart</label>
                   <input defaultValue={game.boxart}
-                    type="text"
+                    type="text" cy-data="game-boxart"
                     {...register('boxart')}
                     className={`form-control ${errors.boxart ? 'is-invalid' : ''}`}
                   />
-                  <div className="invalid-feedback">{errors.boxart?.message}</div>
+                  <div cy-data="game-boxart-error" className="invalid-feedback">{errors.boxart?.message}</div>
                 </div>
                 <div className="form-group">
-                  <button type="submit" className="btn btn-secondary m-4">
+                  <button cy-data="game-submit" type="submit" className="btn btn-secondary m-4">
                     Submit
                   </button>
-                  <button
+                  <button cy-data="game-reset"
                     type="button"
                     onClick={() => reset()}
                     className="btn btn-danger m-4"
