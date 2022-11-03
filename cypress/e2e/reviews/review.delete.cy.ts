@@ -2,7 +2,7 @@ import config from '../../../src/config.json';
 import { TestResponses } from '../test.responses';
 const backUrl = config.base_url_backend
 
-describe("News delete tests", () => {
+describe("Reviews delete tests", () => {
   it("should be visible", () => {
     cy.loginAsAdmin()
     cy.mockReviewsGetAllResponse()

@@ -4,7 +4,7 @@ describe("News list tests", () => {
 	it("should be visible if news exist", () => {
 		cy.loginAsAdmin()
     cy.mockNewsGetAllResponse()
-    cy.get("[cy-data=navbar-news-link]").click();
+    cy.get("[cy-data=navbar-news-link]",{timeout:1000}).click();
 		cy.get('[cy-data=news-header]').should("be.visible")
     cy.get('[cy-data=news-table]').should("be.visible")
 	});

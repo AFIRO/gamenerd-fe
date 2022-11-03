@@ -2,7 +2,7 @@ describe("reviews list item tests", () => {
 	it("should be visible if reviews exist", () => {
 		cy.loginAsAdmin()
     cy.mockReviewsGetAllResponse()
-    cy.get("[cy-data=navbar-reviews-link]").click();
+    cy.get("[cy-data=navbar-reviews-link]",{timeout:1000}).click();
 		cy.get('[cy-data=reviews-list-name]').should("be.visible")
     cy.get('[cy-data=reviews-list-writer]').should("be.visible")
     cy.get('[cy-data=reviews-list-content]').should("be.visible")
