@@ -26,13 +26,13 @@ export default function NavigationBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/games">
+            <LinkContainer cy-data="navbar-games-link" to="/games">
               <Nav.Link>Games</Nav.Link>
               </LinkContainer>
-            <LinkContainer to="/news">
+            <LinkContainer cy-data="navbar-news-link" to="/news">
               <Nav.Link>News</Nav.Link>
               </LinkContainer>
-            <LinkContainer to="/reviews">
+            <LinkContainer cy-data="navbar-reviews-link" to="/reviews">
               <Nav.Link>Reviews</Nav.Link>
               </LinkContainer>
             {hasRoles.includes("ADMIN")?<LinkContainer to="/users">

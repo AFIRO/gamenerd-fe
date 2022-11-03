@@ -1,4 +1,4 @@
-describe("Gamelist item tests", () => {
+describe("Game list item tests", () => {
 	it("should be visible if games exist", () => {
 		cy.loginAsAdmin()
 		cy.get('[cy-data=game-list-item]').should("be.visible")

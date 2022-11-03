@@ -31,6 +31,14 @@ export default function ErrorMessage({ error }) {
           </div>
         );
 
+        case ErrorIdentifier.NEWS_NOT_FOUND:
+          return (
+            <div cy-data="no-news-game-error" className="text-light"> <h2>Er is nog geen nieuws geschreven voor dit spel.</h2>
+              <h4>Indien je een schrijver bent, schrijf er gerust eentje!</h4>
+              {hasRoles.includes("WRITER") ? <Link to={`/news/create`}><button className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
+            </div>
+          );
+
         case ErrorIdentifier.REVIEWS_NOT_FOUND_WRITER:
           return (
             <div cy-data="no-reviews-writer-error" className="text-light"> <h2>Deze user heeft nog geen reviews geschreven.</h2>

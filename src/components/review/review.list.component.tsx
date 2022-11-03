@@ -35,11 +35,11 @@ export default function ReviewListComponent() {
     <Loader loading={loading} />
     <ErrorMessage error={error} />
     {!loading && !error ?
-    <div>   <h1 className="text-light">Overzicht van alle reviews</h1>
-    {hasRoles.includes("WRITER") ?  <Link to={`/reviews/create`}><button className="btn btn-secondary mt-3">Review aanmaken</button></Link> : null}
+    <div>   <h1 cy-data="reviews-header" className="text-light">Overzicht van alle reviews</h1>
+    {hasRoles.includes("WRITER") ?  <Link to={`/reviews/create`}><button cy-data="reviews-create" className="btn btn-secondary mt-3">Review aanmaken</button></Link> : null}
       <div className="row justify-content-center p-4">
         <div className="col-6">
-          <table className="table table-bordered table-striped table-dark">
+          <table cy-data="reviews-table" className="table table-bordered table-striped table-dark">
             <thead>
             <tr>
               <td>Game</td>
@@ -47,8 +47,8 @@ export default function ReviewListComponent() {
               <td>Korte inhoud</td>
               <td>Score</td>
               <td>Link</td>
-              {hasRoles.includes("WRITER") ? <td>Writer Opties</td> : null}
-              {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
+              {hasRoles.includes("WRITER") ? <td cy-data="writer-options">Writer Opties</td> : null}
+              {hasRoles.includes("ADMIN") ? <td cy-data="admin-options">Admin Opties</td> : null}
               </tr>
             </thead>
             <tbody>

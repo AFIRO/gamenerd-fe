@@ -1,5 +1,6 @@
 export class ErrorIdentifier{
   public static readonly REVIEW_NOT_FOUND = "No Review found";
+  public static readonly NEWS_NOT_FOUND = "No News found";
   public static readonly NEWS_NOT_FOUND_GAME = "No news in database found for game";
   public static readonly REVIEWS_NOT_FOUND_GAME = "No reviews in database found for game";
   public static readonly NEWS_NOT_FOUND_WRITER = "No news in database found written by writer";

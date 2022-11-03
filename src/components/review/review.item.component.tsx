@@ -30,16 +30,15 @@ export default function ReviewItemComponent() {
     fetchReview();
   }, [reviewId]);
 
-
   return (
-    <div>
+    <div cy-data="reviews-item">
       <Loader loading={loading} />
       <ErrorMessage error={error} /> 
       {!loading && !error ?
-        <div className="text-light">   <h1 className="text-light">Review over {review.game.name}</h1>
-          <h2 >Geschreven door {review.writer.name}</h2>
-          <h3 >Score: {review.score}/10</h3>
-          <p>{review.content}</p>
+        <div cy-data="reviews-item-header" className="text-light">   <h1 className="text-light">Review over {review.game.name}</h1>
+          <h2 cy-data="reviews-item-writer" >Geschreven door {review.writer.name}</h2>
+          <h3 cy-data="reviews-item-score" >Score: {review.score}/10</h3>
+          <p cy-data="reviews-item-content">{review.content}</p>
         </div>
         : null}
     </div>

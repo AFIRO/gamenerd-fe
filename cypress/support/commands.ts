@@ -78,6 +78,11 @@ Cypress.Commands.add('mockUsersGetSpecificResponse', () => {
   cy.intercept('GET',backUrl + "/users/roles/3", TestResponses.USER_RESPONSE )
 })
 
+Cypress.Commands.add('mockAdminUserResponse', () => {
+  cy.intercept('GET',backUrl + "/users/roles/3", TestResponses.USER_RESPONSE )
+})
+
+
 Cypress.Commands.add('mockNewsGetAllResponse', () => {
   cy.intercept('GET',backUrl + "/news", TestResponses.NEWS_ALL_RESPONSE )
 })
@@ -117,6 +122,7 @@ declare global {
       mockNewsGetSpecificResponse(): Chainable<void>
       mockReviewsGetAllResponse(): Chainable<void>
       mockReviewsGetSpecificResponse(): Chainable<void>
+      mockAdminUserResponse(): Chainable<void>
     }
   }
 }

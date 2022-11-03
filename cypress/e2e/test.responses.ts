@@ -109,6 +109,26 @@ export class TestResponses {
     }
   }
 
+  public static readonly ADMIN_RESPONSE = {
+    statusCode: 200,
+    body:
+    {
+      id: "1",
+      name: "admin",
+      roles: ["ADMIN", "WRITER"]
+    }
+  }
+
+  public static readonly WRITER_RESPONSE = {
+    statusCode: 200,
+    body:
+    {
+      id: "2",
+      name: "writer",
+      roles: ["WRITER"]
+    }
+  }
+
   public static readonly NEWS_ALL_RESPONSE = {
     statusCode: 200,
     body: [
@@ -118,11 +138,11 @@ export class TestResponses {
           "id": "1",
           "name": "admin"
         },
-        "content": "test test test",
+        "content": "Dante is cool enzo",
         "game": {
-          "id": "2",
-          "name": "Bayonetta 2",
-          "boxart": "https://www.mobygames.com/images/covers/l/467682-bayonetta-bayonetta-2-special-edition-wii-u-front-cover.jpg"
+          "id": "1",
+          "name": "Devil May Cry 3: Dante's Awakening",
+          "boxart": "https://www.mobygames.com/images/covers/l/48031-devil-may-cry-3-dante-s-awakening-playstation-2-front-cover.jpg"
         }
       },
       {
@@ -137,7 +157,20 @@ export class TestResponses {
           "name": "Bayonetta 2",
           "boxart": "https://www.mobygames.com/images/covers/l/467682-bayonetta-bayonetta-2-special-edition-wii-u-front-cover.jpg"
         }
-      }
+      },
+      {
+        "id": "3",
+        "writer": {
+          "id": "1",
+          "name": "admin"
+        },
+        "content": "test test test",
+        "game": {
+          "id": "2",
+          "name": "Bayonetta 2",
+          "boxart": "https://www.mobygames.com/images/covers/l/467682-bayonetta-bayonetta-2-special-edition-wii-u-front-cover.jpg"
+        }
+      },
     ]
   }
 
@@ -150,14 +183,15 @@ export class TestResponses {
         "id": "1",
         "name": "admin"
       },
-      "content": "test test test",
+      "content": "Dante is cool enzo",
       "game": {
-        "id": "2",
-        "name": "Bayonetta 2",
-        "boxart": "https://www.mobygames.com/images/covers/l/467682-bayonetta-bayonetta-2-special-edition-wii-u-front-cover.jpg"
+        "id": "1",
+        "name": "Devil May Cry 3: Dante's Awakening",
+        "boxart": "https://www.mobygames.com/images/covers/l/48031-devil-may-cry-3-dante-s-awakening-playstation-2-front-cover.jpg"
       }
     }
   }
+
 
   public static readonly REVIEWS_ALL_RESPONSE = [
     {

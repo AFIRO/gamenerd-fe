@@ -32,13 +32,13 @@ export default function NewsItemComponent() {
 
 
   return (
-    <div>
+    <div cy-data="news-item">
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
-        <div className="text-light">   <h1 className="text-light">News over {news.game.name}</h1>
-          <h2 >Geschreven door {news.writer.name}</h2>
-          <p>{news.content}</p>
+        <div cy-data="news-item-header" className="text-light"> <h1 className="text-light">News over {news.game.name}</h1>
+          <h2 cy-data="news-item-writer">Geschreven door {news.writer.name}</h2>
+          <p cy-data="news-item-content">{news.content}</p>
         </div>
         : null}
     </div>

@@ -74,7 +74,7 @@ export default function NewsCreateFormComponent() {
   }, [navigate, user.id]);
 
   return (
-    <div>
+    <div cy-data="news-create">
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
@@ -89,30 +89,30 @@ export default function NewsCreateFormComponent() {
                 }
                 <div className="form-group">
                   <label className='m-1'>Content van item</label>
-                  <input
+                  <input cy-data="news-create-content"
                     type="textfield"
                     {...register('content')}
                     className={`form-control ${errors.content ? 'is-invalid' : ''}`}
                   />
-                  <div className="invalid-feedback">{errors.content?.message}</div>
+                  <div cy-data="news-create-content-error" className="invalid-feedback">{errors.content?.message}</div>
                 </div>
 
                 <div className="form-group">
                   <label className='m-1'>Game</label>
-                  <select {...register('gameId')}
+                  <select cy-data="news-create-game" {...register('gameId')}
                     defaultValue=""
                     className={`form-control ${errors.gameId ? 'is-invalid' : ''} form-select`}
                   >
                     <option disabled> -- Kies een spel -- </option>
                     {games.map(game => <option key={game.id} value={game.id}>{game.name}</option>)}
                   </select>
-                  <div className="invalid-feedback">{errors.gameId?.message}</div>
+                  <div cy-data="news-create-game-error" className="invalid-feedback">{errors.gameId?.message}</div>
                 </div>
                 <div className="form-group">
-                  <button type="submit" className="btn btn-secondary m-4">
+                  <button cy-data="news-create-submit" type="submit" className="btn btn-secondary m-4">
                     Submit
                   </button>
-                  <button
+                  <button cy-data="news-create-reset"
                     type="button"
                     onClick={() => reset()}
                     className="btn btn-danger m-4"
