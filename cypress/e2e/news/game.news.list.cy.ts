@@ -20,7 +20,7 @@ describe("News by game list tests", () => {
 		cy.get('[cy-data=admin-options]').should("be.visible")
 	});
 
-  it("as write, should show correct protected options and hide correct options", () => {
+  it("as writer, should show correct protected options and hide correct options", () => {
 		cy.loginAsWriter()
     cy.mockNewsByGameResponse()
     cy.mockGamesGetSpecificResponse()

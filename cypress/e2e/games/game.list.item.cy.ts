@@ -12,7 +12,7 @@ describe("Game list item tests", () => {
   it("render correct unprotected buttons", () => {
 		cy.loginAsAdmin()
 		cy.get('[cy-data="game-list-item-news-button"]').should("be.visible")
-    cy.get('[cy-data="game-list-item-review-button"]').should("be.visible")
+    cy.get('[cy-data="game-list-item-reviews-button"]').should("be.visible")
 	});
 
   it("As admin, should render protected buttons", () => {

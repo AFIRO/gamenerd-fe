@@ -27,7 +27,7 @@ export default function Footer() {
     </div>
 
     <div className="footer-copyright text-center py-3">© 2022 Copyright: <br></br>
-        <a href="dezelinkwerktniet">Andreeas Firoiu</a>
+        <a href="dezelinkwerktniet">Zetta Software</a>
     </div>
 
 </footer>)
