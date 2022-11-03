@@ -1,11 +1,10 @@
 import { axios } from '..';
 import { NewsCreateDto } from './model/news.create.dto';
 import { NewsUpdateDto } from './model/news.update.dto';
-import config from '../../config.json';
 import { News } from './model/news.model';
 
 
-const baseUrl: string = `${config.base_url_backend}/news`
+const baseUrl: string = `/news`
 
 export const getAll = async (): Promise<News[]>  => {
   const {data} = await axios.get(baseUrl);
