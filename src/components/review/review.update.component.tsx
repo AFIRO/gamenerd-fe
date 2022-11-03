@@ -85,7 +85,7 @@ export default function ReviewUpdateFormComponent() {
   }, [navigate, user.id, reviewId]);
 
   return (
-    <div>
+    <div cy-data="reviews-update">
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
@@ -97,40 +97,40 @@ export default function ReviewUpdateFormComponent() {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                   <label className='m-1'>Content van review</label>
-                  <input defaultValue={review.content}
+                  <input defaultValue={review.content} cy-data="reviews-update-content"
                     type="textfield"
                     {...register('content')}
                     className={`form-control ${errors.content ? 'is-invalid' : ''}`}
                   />
-                  <div className="invalid-feedback">{errors.content?.message}</div>
+                  <div cy-data="reviews-update-content-error" className="invalid-feedback">{errors.content?.message}</div>
                 </div>
 
                 <div className="form-group">
                   <label className='m-1'>Score op 10</label>
-                  <input defaultValue={review.score}
+                  <input defaultValue={review.score} cy-data="reviews-update-score"
                     type="text"
                     {...register('score')}
                     className={`form-control ${errors.score ? 'is-invalid' : ''} `}
                   />
-                  <div className="invalid-feedback">{errors.score?.message}</div>
+                  <div cy-data="reviews-update-score-error" className="invalid-feedback">{errors.score?.message}</div>
                 </div>
 
                 <div className="form-group">
                   <label className='m-1'>Game</label>
-                  <select {...register('gameId')}
+                  <select {...register('gameId')} cy-data="reviews-update-game"
                     defaultValue={review.game.id}
                     className={`form-control ${errors.gameId ? 'is-invalid' : ''} form-select`}
                   >
                     <option disabled> -- Kies een spel -- </option>
                     {games.map(game => <option key={game.id} value={game.id}>{game.name}</option>)}
                   </select>
-                  <div className="invalid-feedback">{errors.gameId?.message}</div>
+                  <div  cy-data="reviews-update-game-error" className="invalid-feedback">{errors.gameId?.message}</div>
                 </div>
                 <div className="form-group">
-                  <button type="submit" className="btn btn-secondary m-4">
+                  <button cy-data="reviews-update-submit" type="submit" className="btn btn-secondary m-4">
                     Submit
                   </button>
-                  <button
+                  <button cy-data="reviews-update-reset"
                     type="button"
                     onClick={() => reset()}
                     className="btn btn-danger m-4"
