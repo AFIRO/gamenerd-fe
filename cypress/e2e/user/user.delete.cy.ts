@@ -15,7 +15,7 @@ describe("User delete tests", () => {
     cy.get('[cy-data=delete-cancel]').should("be.visible")
   });
 
-  it("should reset if button pressed", () => {
+  it("should cancel if button pressed", () => {
     cy.mockUsersGetAllResponse()
     cy.mockUsersGetSpecificResponse()
     cy.loginAsAdmin()

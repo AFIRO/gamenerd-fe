@@ -40,15 +40,15 @@ export default function NewsDeleteConfirmationComponent() {
   }, [newsId,navigate])
 
   return (
-    <div>
+    <div cy-data="news-delete">
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
         <div className="m-5">
-          <h1 className="text-light">Je staat op het punt om een nieuws item over {news.game.name} te verwijderen.</h1>
-          <h2 className="text-light">Dit item is geschreven door {news.writer.name}.</h2>
-          <button className="btn btn-danger m-5" onClick={handleDelete}>Bevestigen</button>
-          <Link to={`/games`}><button className="btn btn-warning">Annuleren</button></Link>
+          <h1 cy-data="news-delete-game" className="text-light">Je staat op het punt om een nieuws item over {news.game.name} te verwijderen.</h1>
+          <h2 cy-data="news-delete-writer"className="text-light">Dit item is geschreven door {news.writer.name}.</h2>
+          <button cy-data="news-delete-submit" className="btn btn-danger m-5" onClick={handleDelete}>Bevestigen</button>
+          <Link to={`/news`}><button cy-data="news-delete-cancel" className="btn btn-warning">Annuleren</button></Link>
         </div>
         : null}
     </div>

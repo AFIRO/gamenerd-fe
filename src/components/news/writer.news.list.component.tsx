@@ -42,18 +42,18 @@ export default function WriterNewsComponent() {
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
-        <div>   <h1 className="text-light">Overzicht van alle news geschreven door {user.name}</h1>
+        <div cy-data="news-header">   <h1 className="text-light">Overzicht van alle news geschreven door {user.name}</h1>
       <div className="row justify-content-center p-4">
         <div className="col-6">
-          <table className="table table-bordered table-striped table-dark">
+          <table cy-data="news-table" className="table table-bordered table-striped table-dark">
             <thead>
             <tr>
               <td>Game</td>
               <td>Schrijver</td>
               <td>Korte inhoud</td>
               <td>Link</td>
-              {hasRoles.includes("WRITER") ? <td>Writer Opties</td> : null}
-              {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
+              {hasRoles.includes("WRITER") ? <td cy-data="writer-options">Writer Opties</td> : null}
+              {hasRoles.includes("ADMIN") ? <td cy-data="admin-options">Admin Opties</td> : null}
               </tr>
             </thead>
             <tbody>

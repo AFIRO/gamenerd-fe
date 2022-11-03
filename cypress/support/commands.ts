@@ -82,6 +82,11 @@ Cypress.Commands.add('mockAdminUserResponse', () => {
   cy.intercept('GET',backUrl + "/users/roles/3", TestResponses.USER_RESPONSE )
 })
 
+Cypress.Commands.add('mockAdminUserNoRolesResponse', () => {
+  cy.intercept('GET',backUrl + "/users/3", TestResponses.USER_RESPONSE )
+})
+
+
 
 Cypress.Commands.add('mockNewsGetAllResponse', () => {
   cy.intercept('GET',backUrl + "/news", TestResponses.NEWS_ALL_RESPONSE )
@@ -99,7 +104,21 @@ Cypress.Commands.add('mockReviewsGetSpecificResponse', () => {
   cy.intercept('GET',backUrl + "/reviews/1", TestResponses.REVIEW_RESPONSE )
 })
 
+Cypress.Commands.add('mockNewsByWriterResponse', () => {
+  cy.intercept('GET',backUrl + "/news/byWriter/3", TestResponses.NEWS_ALL_RESPONSE )
+})
 
+Cypress.Commands.add('mockNewsByGameResponse', () => {
+  cy.intercept('GET',backUrl + "/news/byGame/1", TestResponses.NEWS_ALL_RESPONSE )
+})
+
+Cypress.Commands.add('mockReviewsByWriterResponse', () => {
+  cy.intercept('GET',backUrl + "/reviews/byWriter/3", TestResponses.REVIEWS_ALL_RESPONSE )
+})
+
+Cypress.Commands.add('mockReviewsByGameResponse', () => {
+  cy.intercept('GET',backUrl + "/reviews/byGame/1", TestResponses.REVIEWS_ALL_RESPONSE )
+})
 
 
 declare global {
@@ -118,11 +137,16 @@ declare global {
       mockGamesGetSpecificResponse(): Chainable<void>
       mockUsersGetAllResponse(): Chainable<void>
       mockUsersGetSpecificResponse(): Chainable<void>
+      mockAdminUserResponse(): Chainable<void>
       mockNewsGetAllResponse(): Chainable<void>
       mockNewsGetSpecificResponse(): Chainable<void>
       mockReviewsGetAllResponse(): Chainable<void>
       mockReviewsGetSpecificResponse(): Chainable<void>
-      mockAdminUserResponse(): Chainable<void>
+      mockNewsByWriterResponse(): Chainable<void>
+      mockNewsByGameResponse(): Chainable<void>
+      mockReviewsByWriterResponse(): Chainable<void>
+      mockReviewsByGameResponse(): Chainable<void>
+      mockAdminUserNoRolesResponse(): Chainable<void>
     }
   }
 }

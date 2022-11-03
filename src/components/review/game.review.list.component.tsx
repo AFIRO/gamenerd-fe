@@ -23,8 +23,8 @@ export default function GameReviewComponent() {
       try {
         setLoading(true);
         setError(null);
-        const news = await reviewService.getAllByGameId(gameId);
-        setReviews(news);
+        const reviews = await reviewService.getAllByGameId(gameId);
+        setReviews(reviews);
         const game = await gameService.getById(gameId);
         setGame(game);
       } catch (error) {
@@ -42,11 +42,11 @@ export default function GameReviewComponent() {
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
-        <div>   <h1 className="text-light">Overzicht van alle reviews voor {game.name}</h1>
-         {hasRoles.includes("WRITER") ?  <Link to={`/reviews/create`}><button className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
+        <div cy-data="reviews-header">   <h1 className="text-light">Overzicht van alle reviews voor {game.name}</h1>
+         {hasRoles.includes("WRITER") ?  <Link to={`/reviews/create`}><button cy-data="reviews-create" className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
       <div className="row justify-content-center p-4">
         <div className="col-6">
-          <table className="table table-bordered table-striped table-dark">
+          <table cy-data="reviews-table" className="table table-bordered table-striped table-dark">
             <thead>
             <tr>
               <td>Game</td>
@@ -54,8 +54,8 @@ export default function GameReviewComponent() {
               <td>Korte inhoud</td>
               <td>Score</td>
               <td>Link</td>
-              {hasRoles.includes("WRITER") ? <td>Writer Opties</td> : null}
-              {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
+              {hasRoles.includes("WRITER") ? <td cy-data="writer-options">Writer Opties</td> : null}
+              {hasRoles.includes("ADMIN") ? <td cy-data="admin-options">Admin Opties</td> : null}
               </tr>
             </thead>
             <tbody>

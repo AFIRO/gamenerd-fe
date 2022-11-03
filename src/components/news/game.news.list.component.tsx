@@ -42,19 +42,19 @@ export default function GameNewsComponent() {
       <Loader loading={loading} />
       <ErrorMessage error={error} />
       {!loading && !error ?
-        <div>   <h1 className="text-light">Overzicht van alle news over {game.name}</h1>
-         {hasRoles.includes("WRITER") ?  <Link to={`/news/create`}><button className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
+        <div cy-data="news-header">   <h1 className="text-light">Overzicht van alle news over {game.name}</h1>
+         {hasRoles.includes("WRITER") ?  <Link to={`/news/create`}><button cy-data="news-create" className="btn btn-secondary mt-3">Nieuws item aanmaken</button></Link> : null}
       <div className="row justify-content-center p-4">
         <div className="col-6">
-          <table className="table table-bordered table-striped table-dark">
+          <table cy-data="news-table" className="table table-bordered table-striped table-dark">
             <thead>
             <tr>
               <td>Game</td>
               <td>Schrijver</td>
               <td>Korte inhoud</td>
               <td>Link</td>
-              {hasRoles.includes("WRITER") ? <td>Writer Opties</td> : null}
-              {hasRoles.includes("ADMIN") ? <td>Admin Opties</td> : null}
+              {hasRoles.includes("WRITER") ? <td cy-data="writer-options">Writer Opties</td> : null}
+              {hasRoles.includes("ADMIN") ? <td cy-data="admin-options">Admin Opties</td> : null}
               </tr>
             </thead>
             <tbody>
