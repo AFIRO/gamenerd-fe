@@ -19,7 +19,7 @@ Ik verwacht dat volgende software reeds geïnstalleerd is:
 
 Applicatie start via yarn start. 
 Het vereist als env variable de url van de backend via REACT_APP_BACKEND_BASE_URL.
-Indien deze niet bestaat, zal hij als default 9000 nemen.
+Indien deze niet bestaat, zal hij als default Localhost:9000 nemen.
 
 ## Testen
 
