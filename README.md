@@ -17,9 +17,12 @@ Ik verwacht dat volgende software reeds geïnstalleerd is:
 
 ## Opstarten
 
-> Schrijf hier hoe we de applicatie starten (.env bestanden aanmaken, commando's om uit te voeren...)
-
+Applicatie start via yarn start. 
+Het vereist als env variable de url van de backend via REACT_APP_BACKEND_BASE_URL.
+Indien deze niet bestaat, zal hij als default 9000 nemen.
 
 ## Testen
 
-> Schrijf hier hoe we de testen uitvoeren (.env bestanden aanmaken, commando's om uit te voeren...)
+Yarn cypress is voldoende om de Cypress UI te starten.
+Voor convenience is er een all.cy.ts bestand die alle testen simultaan laat draaien.
+Mijn testen mocken 100% van de output van de backend waardoor deze kunnen draaien zonder een actieve backend. Hij mocked ook negatieve reacties, dus alle scenarios zijn afgetoetst.
