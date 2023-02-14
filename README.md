@@ -1,18 +1,3 @@
-# Examenopdracht Front-end Web Development
-
-- Student: ANDREEAS FIROIU
-- Studentennummer: 077350AF
-- E-mailadres: andreeas.firoiu@student.hogent.be
-
-## Vereisten
-
-Ik verwacht dat volgende software reeds geïnstalleerd is:
-
-- [NodeJS](https://nodejs.org)
-- [Yarn](https://yarnpkg.com)
-- [MySQL Community Server](https://dev.mysql.com/downloads/mysql/)
-
-
 ## Opstarten
 
 Applicatie start via yarn start. 
